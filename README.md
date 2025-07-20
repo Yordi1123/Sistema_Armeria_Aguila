@@ -22,4 +22,4 @@ Este proyecto es un sistema de escritorio desarrollado en Java con JavaFX y Mave
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/Yordi1123/sistAmeria.git
+   git clone https://github.com/Yordi1123/sistAmeria_remoto.git
