@@ -12,8 +12,7 @@ public class GestorAccesorio extends GestorProducto {
                 + " ===");
         boolean encontrada = false;
         for (ProductoArmeria p : inventario) {
-            if (p instanceof ProductoArma arma && arma.marca.equal -
-                    sIgnoreCase(marca)) {
+            if (p instanceof ProductoArma arma && arma.marca.equalsIgnoreCase(marca)) {
                 arma.mostrarDetallesProducto();
                 System.out.println("\n--------------------------------------------------------------------------");
                 encontrada = true;
@@ -57,4 +56,4 @@ public class GestorAccesorio extends GestorProducto {
         }
     }
 }
-}
+

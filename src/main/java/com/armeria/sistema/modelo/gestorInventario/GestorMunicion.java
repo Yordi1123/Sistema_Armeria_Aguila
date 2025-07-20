@@ -1,8 +1,8 @@
 package com.armeria.sistema.modelo.gestorInventario;
 
-public class GestionMunicion extends GestorProducto {
+public class GestorMunicion extends GestorProducto {
 
-    public GestionMunicion() {
+    public GestorMunicion() {
         super();
     }
 
@@ -11,8 +11,7 @@ public class GestionMunicion extends GestorProducto {
         System.out.println("=== Buscando armas de marca: " + marca + " ===");
         boolean encontrada = false;
         for (ProductoArmeria p : inventario) {
-            if (p instanceof ProductoArma arma && arma.marca.equal -
-                    sIgnoreCase(marca)) {
+            if (p instanceof ProductoArma arma && arma.marca.equalsIgnoreCase(marca)) {
                 arma.mostrarDetallesProducto();
                 System.out.println("\n------------------------------------------------------");
                 encontrada = true;

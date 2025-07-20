@@ -9,8 +9,7 @@ public abstract class GestorProducto {
     public void registrarProducto (ProductoArmeria producto) {
         if (producto != null ) {
             inventario. add (producto);
-            System. out . println ("Producto registrado: " + pro-
-                    ducto. nombre + " (" + producto. tipo + ")");
+            System. out . println ("Producto registrado: " + producto. nombre + " (" + producto. tipo + ")");
         }
     }
     public abstract void buscarPorMarca (String marca);
