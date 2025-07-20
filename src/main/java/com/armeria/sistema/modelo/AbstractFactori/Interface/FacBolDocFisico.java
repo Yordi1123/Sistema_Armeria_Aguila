@@ -2,7 +2,6 @@ package com.armeria.sistema.modelo.AbstractFactori.Interface;
 import java.time.LocalDate;
 
 import com.armeria.sistema.modelo.AbstractFactori.docPago.*;
-import com.armeria.sistema.modelo.AbstractFactori.tipoElectronico.docElectronico;
 import com.armeria.sistema.modelo.AbstractFactori.tipoFisico.*;
 
 public class FacBolDocFisico implements FabricaComprobanteDocumento {
@@ -20,7 +19,7 @@ public class FacBolDocFisico implements FabricaComprobanteDocumento {
 
     @Override
     public docTrasladoArma creaDocTrasladoArma() {
-        return new docElectronico("", "", "", "", "", LocalDate.now(), 0.0, "", "");
+        return new docFisico("","","","","","", LocalDate.now(), "", 0.0, "", "");
     }
     
 }

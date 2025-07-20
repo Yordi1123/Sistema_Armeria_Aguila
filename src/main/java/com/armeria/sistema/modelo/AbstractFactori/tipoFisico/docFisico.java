@@ -10,8 +10,8 @@ public class docFisico extends docTrasladoArma {
         // Constructor por defecto
     }
 
-    public docFisico(String nombreVendedor, String rucEmpresa, String direccionEmpresa, String nombreCliente, String direccionCliente, String dniCliente, LocalDate fechaEmision, double montoTotal,String descripcionBienes,String arma, String oficina) {
-        super(nombreVendedor, rucEmpresa, direccionEmpresa, nombreCliente, direccionCliente, dniCliente, fechaEmision, descripcionBienes,montoTotal,arma);
+    public docFisico(String nombreVendedor, String rucEmpresa, String direccionEmpresa, String nombreCliente, String dniCliente, String direccionCliente, LocalDate fechaEmision, String descripcionBienes, double montoTotal, String arma, String oficina) {
+        super(nombreVendedor, arma, descripcionBienes, direccionCliente, rucEmpresa, direccionEmpresa, nombreCliente, dniCliente, fechaEmision, montoTotal);
         this.oficina = oficina;
     }
     public String getOficina() {

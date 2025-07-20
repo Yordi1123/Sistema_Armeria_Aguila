@@ -9,9 +9,8 @@ public class docElectronico extends docTrasladoArma {
     public docElectronico() {
         // Constructor por defecto
     }
-
-    public docElectronico(String numeroComprobante, String nombreVendedor, String rucEmpresa, String direccionEmpresa, String nombreCliente, String rucCliente, LocalDate fechaEmision, double montoTotal, String codSunat, String Sucamet) {
-        super(numeroComprobante, nombreVendedor, rucEmpresa, direccionEmpresa, nombreCliente, fechaEmision, montoTotal);
+    public docElectronico(String nombreVendedor, String rucEmpresa, String direccionEmpresa, String nombreCliente, String dniCliente, String direccionCliente, LocalDate fechaEmision, String descripcionBienes, double montoTotal, String arma, String codSunat, String Sucamet) {
+        super(nombreVendedor, arma, descripcionBienes, direccionCliente, rucEmpresa, direccionEmpresa, nombreCliente, dniCliente, fechaEmision, montoTotal);
         this.codSunat = codSunat;
         this.Sucamet = Sucamet;
     }
@@ -24,8 +23,10 @@ public class docElectronico extends docTrasladoArma {
         System.out.println("RUC de la empresa: " + rucEmpresa); 
         System.out.println("Dirección de la empresa: " + direccionEmpresa);
         System.out.println("Nombre del cliente: " + nombreCliente);
-        System.out.println("RUC del cliente: " + dniCliente);
+        System.out.println("DNI del cliente: " + dniCliente);
         System.out.println("Fecha de emisión: " + fechaEmision);
+        System.out.println("Descripción de bienes: " + descripcionBienes);
+        System.out.println("Arma: " + arma);
         System.out.println("Monto total: " + montoTotal);
         System.out.println("Código SUNAT: " + codSunat);
         System.out.println("Sucamet: " + Sucamet);
