@@ -1,6 +1,7 @@
 package com.armeria.sistema.modelo.gestorInventario;
 
 public abstract class ProductoArmeria {
+
     protected String codProducto;
     protected String nombre;
     protected String tipo;
@@ -11,9 +12,9 @@ public abstract class ProductoArmeria {
     protected String paisOrigen;
 
     public ProductoArmeria(String codProducto, String nombre,
-                           String tipo, String peso,
-                           double precioVenta, String marca, String modelo,
-                           String paisOrigen) {
+            String tipo, String peso,
+            double precioVenta, String marca, String modelo,
+            String paisOrigen) {
         this.codProducto = codProducto;
         this.nombre = nombre;
         this.tipo = tipo;
