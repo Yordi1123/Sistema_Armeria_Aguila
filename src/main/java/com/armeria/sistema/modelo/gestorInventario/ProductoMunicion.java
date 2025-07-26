@@ -14,12 +14,12 @@ public class ProductoMunicion extends ProductoArmeria {
         this.cantidad = cantidad;
     }
 
-    // @Override
-    // public void mostrarDetallesProducto() {
-    //     System.out.println(" MUNICIÓN: " + nombre);
-    //     System.out.println(" Código: " + codProducto + " | Tipo: " + tipo + " | Peso: " + peso + " kg");
-    //     System.out.println(" Marca: " + marca + " | Modelo: " + modelo + " | Calibre: " + calibre);
-    //     System.out.println(" Cantidad por unidad: " + cantidad + " | Origen: " + paisOrigen);
-    //     System.out.println(" Precio: S/ " + String.format("%.2f", precioVenta));
-    // }
+    @Override
+    public void mostrarDetallesProducto() {
+        System.out.println(" MUNICIÓN: " + nombre);
+        System.out.println(" Código: " + codProducto + " | Tipo: " + tipo + " | Peso: " + peso + " kg");
+        System.out.println(" Marca: " + marca + " | Modelo: " + modelo + " | Calibre: " + calibre);
+        System.out.println(" Cantidad por unidad: " + cantidad + " | Origen: " + paisOrigen);
+        System.out.println(" Precio: S/ " + String.format("%.2f", precioVenta));
+    }
 }

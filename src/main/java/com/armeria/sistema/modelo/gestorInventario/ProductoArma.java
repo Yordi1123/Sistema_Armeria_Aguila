@@ -20,29 +20,29 @@ public class ProductoArma extends ProductoArmeria {
     }
 
     @Override
-    public String toString(){
-        return "ProductoArma{" +
-                "codProducto='" + codProducto + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", peso='" + peso + '\'' +
-                ", precioVenta=" + precioVenta +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", paisOrigen='" + paisOrigen + '\'' +
-                ", calibre='" + calibre + '\'' +
-                ", longitudCanon=" + longitudCanon +
-                ", capacidadCargador=" + capacidadCargador +
-                ", seguro='" + seguro + '\'' +
-                '}';
+    // public String toString(){
+    //     return "ProductoArma{" +
+    //             "codProducto='" + codProducto + '\'' +
+    //             ", nombre='" + nombre + '\'' +
+    //             ", tipo='" + tipo + '\'' +
+    //             ", peso='" + peso + '\'' +
+    //             ", precioVenta=" + precioVenta +
+    //             ", marca='" + marca + '\'' +
+    //             ", modelo='" + modelo + '\'' +
+    //             ", paisOrigen='" + paisOrigen + '\'' +
+    //             ", calibre='" + calibre + '\'' +
+    //             ", longitudCanon=" + longitudCanon +
+    //             ", capacidadCargador=" + capacidadCargador +
+    //             ", seguro='" + seguro + '\'' +
+    //             '}';
 
-    }
+    // }
 //     @Override
-//     public void mostrarDetallesProducto() {
-//         System.out.println(" ARMA: " + nombre);
-//         System.out.println(" Código: " + codProducto + " | Tipo: "+ tipo + " | Peso: " + peso + " kg");
-//         System.out.println(" Marca: " + marca + " | Modelo: " + modelo + " | Calibre: " + calibre);
-//         System.out.println(" Longitud Cañón: " + longitudCanon + " mm | Capacidad Cargador:" + capacidadCargador);
-//         System.out.println(" Seguro: " + seguro + " | Origen: " + paisOrigen + " | Precio: S/ " + precioVenta);
-//     }
+    public void mostrarDetallesProducto() {
+        System.out.println(" ARMA: " + nombre);
+        System.out.println(" Código: " + codProducto + " | Tipo: "+ tipo + " | Peso: " + peso + " kg");
+        System.out.println(" Marca: " + marca + " | Modelo: " + modelo + " | Calibre: " + calibre);
+        System.out.println(" Longitud Cañón: " + longitudCanon + " mm | Capacidad Cargador:" + capacidadCargador);
+        System.out.println(" Seguro: " + seguro + " | Origen: " + paisOrigen + " | Precio: S/ " + precioVenta);
+    }
 }
