@@ -1,7 +1,8 @@
-package com.armeria.sistema.modelo.AbstractFactory.tipoElectronico;
+package com.armeria.sistema.modelo.ComprobantePago.tipoElectronico;
 
-import com.armeria.sistema.modelo.AbstractFactory.docPago.boleta;
 import java.time.LocalDate;
+
+import com.armeria.sistema.modelo.ComprobantePago.docPago.boleta;
 public class boletaElectronica extends boleta {
     
     private String codigoSeguridad;

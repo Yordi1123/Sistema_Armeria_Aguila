@@ -1,4 +1,4 @@
-package com.armeria.sistema.modelo.AbstractFactory.docPago;
+package com.armeria.sistema.modelo.ComprobantePago.docPago;
 
 import java.time.LocalDate;
 

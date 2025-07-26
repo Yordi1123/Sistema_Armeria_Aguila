@@ -1,6 +1,7 @@
-package com.armeria.sistema.modelo.AbstractFactory.tipoFisico;
-import com.armeria.sistema.modelo.AbstractFactory.docPago.factura;
+package com.armeria.sistema.modelo.ComprobantePago.tipoFisico;
 import java.time.LocalDate;
+
+import com.armeria.sistema.modelo.ComprobantePago.docPago.factura;
 
 public class FacturaFisica  extends factura {
     private String oficina;

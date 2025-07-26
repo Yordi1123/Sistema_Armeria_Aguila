@@ -18,11 +18,11 @@ public class ProductoAccesorio extends ProductoArmeria {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public void mostrarDetallesProducto() {
-        System.out.println(" ACCESORIO: " + nombre);
-        System.out.println(" Código: " + codProducto + " | Tipo: " + tipo + " | Peso: " + peso + " kg");
-        System.out.println(" Marca: " + marca + " | Modelo: " + modelo + " | Función: " + funcion);
-        System.out.println(" Origen: " + paisOrigen + " | Precio:S/ " + precioVenta);
-    }
+@Override
+public String toString() {
+    return "ACCESORIO: " + nombre + "\n" +
+           super.toString() + "\n" +
+           "Función: " + funcion;
+}
+
 }

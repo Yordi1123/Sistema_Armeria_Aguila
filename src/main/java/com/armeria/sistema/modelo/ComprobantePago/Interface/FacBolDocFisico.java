@@ -1,8 +1,8 @@
-package com.armeria.sistema.modelo.AbstractFactory.Interface;
+package com.armeria.sistema.modelo.ComprobantePago.Interface;
 import java.time.LocalDate;
 
-import com.armeria.sistema.modelo.AbstractFactory.docPago.*;
-import com.armeria.sistema.modelo.AbstractFactory.tipoFisico.*;
+import com.armeria.sistema.modelo.ComprobantePago.docPago.*;
+import com.armeria.sistema.modelo.ComprobantePago.tipoFisico.*;
 
 public class FacBolDocFisico implements FabricaComprobanteDocumento {
 

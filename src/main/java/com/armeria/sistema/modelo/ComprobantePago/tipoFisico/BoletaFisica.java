@@ -1,6 +1,7 @@
-package com.armeria.sistema.modelo.AbstractFactory.tipoFisico;
-import com.armeria.sistema.modelo.AbstractFactory.docPago.boleta;
+package com.armeria.sistema.modelo.ComprobantePago.tipoFisico;
 import java.time.LocalDate;
+
+import com.armeria.sistema.modelo.ComprobantePago.docPago.boleta;
 
 public class BoletaFisica extends boleta {
 

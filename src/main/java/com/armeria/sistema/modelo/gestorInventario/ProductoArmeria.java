@@ -24,6 +24,18 @@ public abstract class ProductoArmeria {
         this.modelo = modelo;
         this.paisOrigen = paisOrigen;
     }
+    public String toString() {
+        return "ProductoArmeria{" +
+                "codProducto='" + codProducto + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", peso='" + peso + '\'' +
+                ", precioVenta=" + precioVenta +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", paisOrigen='" + paisOrigen + '\'' +
+                '}';
+    }
 
-    public abstract void mostrarDetallesProducto();
+    // public abstract void mostrarDetallesProducto();
 }

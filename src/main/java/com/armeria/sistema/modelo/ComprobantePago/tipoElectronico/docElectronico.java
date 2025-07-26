@@ -1,6 +1,7 @@
-package com.armeria.sistema.modelo.AbstractFactory.tipoElectronico;
+package com.armeria.sistema.modelo.ComprobantePago.tipoElectronico;
 import java.time.LocalDate;
-import com.armeria.sistema.modelo.AbstractFactory.docPago.docTrasladoArma;
+
+import com.armeria.sistema.modelo.ComprobantePago.docPago.docTrasladoArma;
 
 public class docElectronico extends docTrasladoArma {
     private String codSunat;

@@ -1,6 +1,6 @@
-package com.armeria.sistema.modelo.AbstractFactory.Interface;
-import com.armeria.sistema.modelo.AbstractFactory.docPago.*;
-import com.armeria.sistema.modelo.AbstractFactory.tipoElectronico.*;
+package com.armeria.sistema.modelo.ComprobantePago.Interface;
+import com.armeria.sistema.modelo.ComprobantePago.docPago.*;
+import com.armeria.sistema.modelo.ComprobantePago.tipoElectronico.*;
 
 public class FacBolDocElectronico implements FabricaComprobanteDocumento {
 

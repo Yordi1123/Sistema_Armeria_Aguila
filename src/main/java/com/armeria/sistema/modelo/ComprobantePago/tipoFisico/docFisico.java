@@ -1,7 +1,7 @@
-package com.armeria.sistema.modelo.AbstractFactory.tipoFisico;
-import com.armeria.sistema.modelo.AbstractFactory.docPago.docTrasladoArma;
-
+package com.armeria.sistema.modelo.ComprobantePago.tipoFisico;
 import java.time.LocalDate;
+
+import com.armeria.sistema.modelo.ComprobantePago.docPago.docTrasladoArma;
 
 public class docFisico extends docTrasladoArma {
     private String oficina;

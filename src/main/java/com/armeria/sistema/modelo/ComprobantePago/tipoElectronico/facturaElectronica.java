@@ -1,6 +1,7 @@
-package com.armeria.sistema.modelo.AbstractFactory.tipoElectronico;
+package com.armeria.sistema.modelo.ComprobantePago.tipoElectronico;
 import java.time.LocalDate;
-import com.armeria.sistema.modelo.AbstractFactory.docPago.factura;
+
+import com.armeria.sistema.modelo.ComprobantePago.docPago.factura;
 
 public class facturaElectronica extends factura{
     private String codigoQR;
