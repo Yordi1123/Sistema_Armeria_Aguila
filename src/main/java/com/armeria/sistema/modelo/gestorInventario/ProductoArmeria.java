@@ -4,16 +4,17 @@ public abstract class ProductoArmeria {
 
     protected String codProducto;
     protected String nombre;
-    protected String tipo;
+    protected TipoProducto tipo;
     protected String peso;
     protected double precioVenta;
     protected String marca;
     protected String modelo;
+    protected int stock; //Agregando el stock del producto
     protected String paisOrigen;
 
     public ProductoArmeria(String codProducto, String nombre,
-            String tipo, String peso,
-            double precioVenta, String marca, String modelo,
+            TipoProducto tipo, String peso,
+            double precioVenta, String marca, String modelo, int stock,
             String paisOrigen) {
         this.codProducto = codProducto;
         this.nombre = nombre;
@@ -22,20 +23,88 @@ public abstract class ProductoArmeria {
         this.precioVenta = precioVenta;
         this.marca = marca;
         this.modelo = modelo;
+        this.stock = stock;
         this.paisOrigen = paisOrigen;
     }
-    public String toString() {
-        return "ProductoArmeria{" +
-                "codProducto='" + codProducto + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", peso='" + peso + '\'' +
-                ", precioVenta=" + precioVenta +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", paisOrigen='" + paisOrigen + '\'' +
-                '}';
+
+    //Metodos Getter y Setters de la clase abstracta ProductoArmeria
+    public String getCodProducto() {
+        return codProducto;
     }
 
-    // public abstract void mostrarDetallesProducto();
+    public void setCodProducto(String codProducto) {
+        this.codProducto = codProducto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public TipoProducto getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoProducto tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getPaisOrigen() {
+        return paisOrigen;
+    }
+
+    public void setPaisOrigen(String paisOrigen) {
+        this.paisOrigen = paisOrigen;
+    }
+
+    //Metodo abstracto mostrar detalles para cada tipo de producto
+    public abstract void mostrarDetalles();
+
+    //Metodo para mostrar catologo de armas
+    public abstract void mostrarCatalogo();
+
+
 }

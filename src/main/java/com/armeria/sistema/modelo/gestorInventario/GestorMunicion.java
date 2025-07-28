@@ -6,39 +6,40 @@ public class GestorMunicion extends GestorProducto {
         super();
     }
 
+    //Correcion de metodos por el tipo de producto adecuado
     @Override
     public void buscarPorMarca(String marca) {
-        System.out.println("=== Buscando armas de marca: " + marca + " ===");
+        System.out.println("=== Buscando municiones de marca: " + marca + " ===");
         boolean encontrada = false;
-        for (ProductoArmeria p : inventario) {
-            if (p instanceof ProductoArma arma && arma.marca.equalsIgnoreCase(marca)) {
-                arma.mostrarDetallesProducto();
+        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
+            if (p instanceof ProductoMunicion municion && municion.getMarca().equalsIgnoreCase(marca)) {
+                municion.mostrarDetalles();
                 System.out.println("\n------------------------------------------------------");
                 encontrada = true;
             }
         }
         if (!encontrada) {
-            System.out.println("No se encontraron armas de esa marca.");
+            System.out.println("No se encontraron municiones de esa marca.");
         }
     }
 
     @Override
     public boolean eliminarPorNombre(String nombre) {
-        for (ProductoArmeria p : inventario) {
-            if (p.nombre.equalsIgnoreCase(nombre)) {
-                inventario.remove(p);
-                System.out.println("Arma '" + nombre + "' eliminada del inventario.");
+        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) {
+                GestorProducto.getProductoArmeriaList().remove(p);
+                System.out.println("Municion '" + nombre + "' eliminada del inventario.");
                 return true;
             }
         }
-        System.out.println("No se encontró el arma '" + nombre + "'para eliminar.");
+        System.out.println("No se encontró el municion '" + nombre + "'para eliminar.");
         return false;
     }
 
     @Override
     public double calcularValorTotal() {
         double total = 0;
-        for (ProductoArmeria p : inventario) {
+        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
             total += p.precioVenta;
         }
         return total;
@@ -49,8 +50,8 @@ public class GestorMunicion extends GestorProducto {
         System.out.println("\n------------------------------------------------------");
         System.out.println(" INVENTARIO DE MUNICIONES");
         System.out.println("------------------------------------------------------");
-        for (ProductoArmeria p : inventario) {
-            p.mostrarDetallesProducto();
+        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
+            p.mostrarDetalles();
             System.out.println("------------------------------------------------------");
         }
     }

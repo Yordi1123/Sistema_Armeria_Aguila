@@ -18,7 +18,7 @@ public class docElectronico extends docTrasladoArma {
 
     @Override
     public void generarDocumento() {
-   
+
         System.out.println("Generando documento electrónico de traslado de arma...");
         System.out.println("Nombre del vendedor: " + nombreVendedor);
         System.out.println("RUC de la empresa: " + rucEmpresa); 
