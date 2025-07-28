@@ -13,7 +13,7 @@ public class ProcesadorVenta {
 
 
     public void procesarVenta(){
-        estrategiaVenta.procesarVenta(itemVenta, cliente);
+        estrategiaVenta.procesarVenta(cliente);
     }
 
 }

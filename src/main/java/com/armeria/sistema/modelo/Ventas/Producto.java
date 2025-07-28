@@ -1,6 +1,7 @@
 package com.armeria.sistema.modelo.Ventas;
 
-
+// Clase que representa un producto en el sistema de ventas (Pertenece a gestorInventario)
+// Esta clase puede ser utilizada para representar tanto armas como accesorios y municiones
 public class Producto {
     private String nombre;
     private String tipo; // "Pistola", "Escopeta", "Munición", "Accesorio", etc.

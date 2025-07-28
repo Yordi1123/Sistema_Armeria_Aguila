@@ -2,23 +2,21 @@
 
 package com.armeria.sistema.modelo.Ventas;
 
-import java.util.List;
-
 public class VentaMunicion implements EstrategiaVenta {
 
 
     @Override
-    public void procesarVenta(List<ItemVenta> itemList, Cliente cliente) {
+    public void procesarVenta(Cliente cliente) {
 
     }
 
     @Override
-    public double calcularTotalVenta(List<ItemVenta> itemList) {
+    public double calcularTotalVenta(CarritoCompra carrito) {
         return 0;
     }
 
     @Override
-    public boolean validadVenta(Cliente cliente, ItemVenta item) {
+    public boolean validadVenta(boolean isValido) {
         return false;
     }
 }

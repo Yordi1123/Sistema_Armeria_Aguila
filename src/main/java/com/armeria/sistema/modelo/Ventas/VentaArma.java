@@ -1,5 +1,7 @@
-// Estrategia de venta para escopetas
+// Estrategia de venta de armas
 package com.armeria.sistema.modelo.Ventas;
+
+import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class VentaArma implements EstrategiaVenta{
 
 
     @Override
-    public void procesarVenta(List<ItemVenta> itemList, Cliente cliente) {
+    public void procesarVenta( Cliente cliente) {
 
         // Verificar si el cliente tiene licencia para comprar armas
         if (clienteTieneLicencia(cliente)){
@@ -19,10 +21,19 @@ public class VentaArma implements EstrategiaVenta{
             carritoCompra.procesarProductos();
 
             // Calcular el total de la venta
+            double montoTotal = calcularTotalVenta(carritoCompra);
 
             // Procesar pago (metodo para efectuar el pago)
+            Pago pagoCliente = new Pago(cliente, montoTotal);
+            pagoCliente.procesarPago();
+
+
+            // Actualizar el inventario de armas
+            Inventario.actualizarStockGeneral(carritoCompra);
 
             // Generar comprobante de pago
+            pagoCliente.generarComprobante(carritoCompra);
+
 
         } else {
             // Si el cliente no tiene licencia, mostrar un mensaje de error
@@ -30,14 +41,29 @@ public class VentaArma implements EstrategiaVenta{
         }
     }
 
+    // Metodo para calcular el total de la venta
+    // Recorre la lista de items de venta y suma los subtotales de cada item
+    // Retorna el total de la venta
     @Override
-    public double calcularTotalVenta(List<ItemVenta> itemList) {
-        return 0;
+    public double calcularTotalVenta(CarritoCompra carrito) {
+
+        double total = 0;
+        for (ItemVenta item : carrito.getItemVentaList()) {
+            total += item.calcularSubtotal();
+        }
+        return total;
     }
 
+// Metodo para validar la venta
     @Override
-    public boolean validadVenta(Cliente cliente, ItemVenta item) {
-        return false;
+    public boolean validadVenta(boolean isValido) {
+        if (isValido) {
+            System.out.println("Venta procesada correctamente.");
+
+
+        } else {
+            System.out.println("La venta no se pudo procesar.");
+        }
     }
 
     public boolean clienteTieneLicencia(Cliente cliente) {
