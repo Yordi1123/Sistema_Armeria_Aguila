@@ -9,7 +9,7 @@ public class Producto {
     private int stock;
     private String codigoSerie; // solo para armas
 
-    // Constructor, getters y setters
+    // Constructor para productos con código de serie (armas)
     public Producto(String nombre, String tipo, double precioUnitario, int stock, String codigoSerie) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -18,6 +18,7 @@ public class Producto {
         this.codigoSerie = codigoSerie;
     }
 
+    // Constructor para productos sin código de serie (accesorios, municiones)
     public Producto(String nombre, String tipo, double precioUnitario, int stock) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -25,6 +26,7 @@ public class Producto {
         this.stock = stock;
     }
 
+    // Metodos getter y setter
     public String getNombre() {
         return nombre;
     }
@@ -64,4 +66,7 @@ public class Producto {
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
+
 }
+
+

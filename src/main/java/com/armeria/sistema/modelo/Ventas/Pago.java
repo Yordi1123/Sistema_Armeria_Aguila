@@ -1,12 +1,14 @@
 package com.armeria.sistema.modelo.Ventas;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Pago {
     private Cliente cliente;
-    private  MetodoPagoEnum metodoPago; // Ejemplo: "Tarjeta de Crédito", "Efectivo", etc.
+    private MetodoPagoEnum metodoPago; // Ejemplo: "Tarjeta de Crédito", "Efectivo", etc.
     private double monto;
-    private String fechaPago;
+    private LocalDateTime fechaPago;
 
     public Pago(Cliente cliente, double monto) {
         this.cliente = cliente;
@@ -16,12 +18,13 @@ public class Pago {
     public boolean procesarPago() {
 
         // Lógica para procesar el pago
-        seleccionarMetodoPago();
+        seleccionarMedioPago();
         System.out.println("Procesando pago de " + monto + " con método " + metodoPago);
 
         // Simulación de procesamiento de pago
         if (monto > 0) {
             System.out.println("Pago procesado exitosamente.");
+            setFechaPago(LocalDateTime.now());
             return true;
         } else {
             System.out.println("Error: Monto de pago inválido.");}
@@ -30,31 +33,39 @@ public class Pago {
 
     // Metodo para generar un comprobante de pago (esta se extiende al modulo Comprobante de Pago)
     public void generarComprobante(CarritoCompra carritoCompra) {
-        // Lógica para generar un comprobante de pago
-        System.out.println("Generando comprobante de pago...");
-        System.out.println("==============================================");
-        System.out.println("Armeria SAC");
-        System.out.println("RUC: 12345678901");
-        System.out.println("Cliente: " + cliente.getNombre());
-        System.out.println("==============================================");
-        System.out.println("Detalles de compra:");
-        System.out.println("==============================================");
-        for (ItemVenta item : carritoCompra.getItemVentaList()) {
-            System.out.println("Producto: " + item.getProducto().getNombre() + " | Cantidad: " + item.getCantidad() + " | Precio (u): S/ " + item.getProducto().getPrecioUnitario());
-        }
-        System.out.println("==============================================");
+        System.out.println("\n\n===================== COMPROBANTE DE PAGO =====================");
+        System.out.println("                        ARMERÍA S.A.C.");
+        System.out.println("                      RUC: 12345678901");
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
+        System.out.println("Fecha: " + fechaPago.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        System.out.println("---------------------------------------------------------------");
+        System.out.printf("%-25s %8s %12s %12s%n", "Producto", "Cant.", "P. Unit (S/.)", "Subtotal");
+        System.out.println("---------------------------------------------------------------");
 
-        System.out.println("Método de Pago: " + metodoPago);
-        System.out.println("Monto: " + monto);
-        System.out.println("Fecha de Pago: " + LocalDate.now());
-        System.out.println("==============================================");
+        double total = 0.0;
+        for (ItemVenta item : carritoCompra.getItemVentaList()) {
+            String nombre = item.getProducto().getNombre();
+            int cantidad = item.getCantidad();
+            double precioUnitario = item.getProducto().getPrecioUnitario();
+            double subtotal = cantidad * precioUnitario;
+            total += subtotal;
+
+            System.out.printf(Locale.US, "%-25s %8d %12.2f %12.2f%n", nombre, cantidad, precioUnitario, subtotal);
+        }
+
+        System.out.println("---------------------------------------------------------------");
+        System.out.printf(Locale.US, "%-47s %12.2f%n", "TOTAL A PAGAR (S/.):", total);
+        System.out.printf("%-47s %12s%n", "Método de Pago:", metodoPago);
+        System.out.println("===============================================================\n\n");
+
     }
 
     // Método para seleccionar el método de pago
-    public void seleccionarMetodoPago() {
+    public void seleccionarMedioPago() {
         System.out.println("Selecione medio de pago:");
-        System.out.println("1. Tarjeta de Crédito");
-        System.out.println("2. Tarjeta de Débito");
+        System.out.println("1. Tarjeta de Credito");
+        System.out.println("2. Tarjeta de Debito");
         System.out.println("3. Efectivo");
         System.out.println("4. Transferencia Bancaria");
         System.out.println("5. Yape");
@@ -66,19 +77,26 @@ public class Pago {
 
             case 1:
                 this.metodoPago = MetodoPagoEnum.TARJETA_CREDITO;
+                break;
             case 2:
                 this.metodoPago = MetodoPagoEnum.TARJETA_DEBITO;
+                break;
             case 3:
                 this.metodoPago = MetodoPagoEnum.EFECTIVO;
+                break;
             case 4:
                 this.metodoPago = MetodoPagoEnum.TRANSFERENCIA_BANCARIA;
+                break;
             case 5:
                 this.metodoPago = MetodoPagoEnum.YAPE;
+                break;
             case 6:
                 this.metodoPago = MetodoPagoEnum.BLIMP;
+                break;
 
             default:
                 System.out.println("Método de pago no válido. Seleccione nuevamente.");
+                break;
         }
     }
 
@@ -99,11 +117,11 @@ public class Pago {
         this.monto = monto;
     }
 
-    public String getFechaPago() {
+    public LocalDateTime getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(String fechaPago) {
+    public void setFechaPago(LocalDateTime fechaPago) {
         this.fechaPago = fechaPago;
     }
 
