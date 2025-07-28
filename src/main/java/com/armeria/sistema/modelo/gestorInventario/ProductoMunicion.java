@@ -30,7 +30,7 @@ public class ProductoMunicion extends ProductoArmeria {
         System.out.println("\n------------------------------------------------------");
         for (ProductoArmeria producto : GestorProducto.getProductoArmeriaList()) {
             // Verifica si el producto es de tipo munición
-            if (producto.getTipo() == TipoProducto.MUNICION) {
+            if (producto.getTipo().equals(TipoProducto.MUNICION)) {
                 producto.mostrarDetalles();
                 System.out.println("------------------------------------------------------");
             }

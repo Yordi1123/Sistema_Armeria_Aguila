@@ -1,16 +1,15 @@
 package com.armeria.sistema.modelo.ProductoEstrategia;
 import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
+import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 
 public abstract class ProductoRegistro extends ProductoArmeria {
     private int unidadesVendidas;
-    private int stock;
     private int diasInventario;
 
-    public ProductoRegistro(String codProducto, String nombre, String tipo,
+    public ProductoRegistro(String codProducto, String nombre, TipoProducto tipo,
                             String peso, double precioVenta, String marca,
-                            String modelo, String paisOrigen, int unidadesVendidas, 
-                            int stock, int diasInventario) {
-        super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, paisOrigen);
+                            String modelo,  int stock, String paisOrigen, int unidadesVendidas, int diasInventario) {
+        super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, stock, paisOrigen);
         setUnidadesVendidas(unidadesVendidas);
         setStock(stock);
         setDiasInventario(diasInventario);
@@ -25,7 +24,7 @@ public abstract class ProductoRegistro extends ProductoArmeria {
         this.unidadesVendidas = unidadesVendidas;
     }
 
-    public int getStock() {
+    /*public int getStock() {
         return stock;
     }
 
@@ -34,7 +33,7 @@ public abstract class ProductoRegistro extends ProductoArmeria {
         if (stock < 0) {
             throw new IllegalArgumentException("El stock no puede ser negativo");
         }
-    }
+    }*/
 
 
     public int getDiasInventario() {
@@ -83,16 +82,17 @@ public abstract class ProductoRegistro extends ProductoArmeria {
         this.precioVenta = precioVenta;
     }
 
-    public String getTipo() {
+    public TipoProducto getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    // Corrección del metodo
+    /*public void setTipo(TipoProducto tipo) {
         if (tipo == null || tipo.isEmpty()) {
             throw new IllegalArgumentException("El tipo de producto no puede ser nulo o vacío");
         }
         this.tipo = tipo;
-    }
+    }*/
 
     public String getPeso() {
         return peso;

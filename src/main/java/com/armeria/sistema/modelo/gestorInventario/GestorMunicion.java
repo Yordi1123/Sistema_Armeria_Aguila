@@ -1,4 +1,4 @@
-package com.armeria.sistema.modelo.gestorInventario;
+package com.armeria.sistema.modelo.gestorInventario;//package com.armeria.sistema.modelo.gestorInventario;
 
 public class GestorMunicion extends GestorProducto {
 
@@ -51,8 +51,11 @@ public class GestorMunicion extends GestorProducto {
         System.out.println(" INVENTARIO DE MUNICIONES");
         System.out.println("------------------------------------------------------");
         for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            p.mostrarDetalles();
-            System.out.println("------------------------------------------------------");
+            if (p.getTipo().equals(TipoProducto.MUNICION)) {
+                p.mostrarDetalles();
+                System.out.println("------------------------------------------------------");
+            }
+
         }
     }
 }

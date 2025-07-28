@@ -1,12 +1,15 @@
 package com.armeria.sistema.modelo.ProductoEstrategia;
 
+import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
+
 public class ProductoArmaRegistro extends ProductoRegistro {
+
     private String calibre;
 
-    public ProductoArmaRegistro(String codProducto, String nombre, String tipo, String peso,
-                                 double precioVenta, String marca, String modelo, String paisOrigen,
-                                 int unidadesVendidas, int stock, int diasInventario, String calibre) {
-        super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, paisOrigen, unidadesVendidas, stock, diasInventario);
+    public ProductoArmaRegistro(String codProducto, String nombre, TipoProducto tipo, String peso,
+                                double precioVenta, String marca, String modelo, String paisOrigen,
+                                int unidadesVendidas, int stock, int diasInventario, String calibre) {
+        super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, stock, paisOrigen, unidadesVendidas, diasInventario);
         this.calibre = calibre;
     }
 
@@ -21,12 +24,8 @@ public class ProductoArmaRegistro extends ProductoRegistro {
         this.calibre = calibre;
     }
 
-    @Override
-    public void mostrarDetallesProducto() {
-        System.out.println(this.toString()); 
-    }
 
-    @Override
+    /*@Override
     public String toString() {
         return "ProductoArmaRegistro {" +
                 "\n  Código = '" + getCodProducto() + '\'' +
@@ -42,5 +41,15 @@ public class ProductoArmaRegistro extends ProductoRegistro {
                 ",\n  Stock = " + getStock() +
                 ",\n  Días en Inventario = " + getDiasInventario() +
                 "\n}";
+    }*/
+
+    @Override
+    public void mostrarDetalles() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public void mostrarCatalogo() {
+
     }
 }

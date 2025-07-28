@@ -1,6 +1,5 @@
 package com.armeria.sistema.modelo.gestorInventario;
 
-// factory method
 public class Administrador {
 
     public static void main(String[] args) {

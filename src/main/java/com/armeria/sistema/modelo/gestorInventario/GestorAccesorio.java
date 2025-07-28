@@ -51,8 +51,11 @@ public class GestorAccesorio extends GestorProducto {
         System.out.println(" INVENTARIO DE ACCESORIOS");
         System.out.println("--------------------------------------------------------------------------");
         for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            p.toString();
-            System.out.println("--------------------------------------------------------------------------");
+            // Comprobar que se muestre solo los productos de tipo accesorio
+            if (p.getTipo().equals(TipoProducto.ACCESORIO) ){
+                p.mostrarDetalles();
+                System.out.println("--------------------------------------------------------------------------");
+            }
         }
     }
 }
