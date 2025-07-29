@@ -1,7 +1,9 @@
 package com.armeria.sistema.modelo.Ventas;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 // Clase que representa el inventario de productos disponibles para la venta (Se extiende al gestor de inventario)
 public class Inventario {
     private static final List<Producto> PRODUCTO_LIST = new ArrayList<>();
@@ -52,10 +54,9 @@ public class Inventario {
 
     // Actualiza el stock de un producto específico
     public static void actualizarStock(Producto producto, int cantidadVendida) {
-        if (verificarDisponibilidad(producto.getNombre(),cantidadVendida)){
-            producto.setStock(producto.getStock()-cantidadVendida);
-            System.out.println("stock actualizado exitosamente");
-        }
+        producto.setStock(producto.getStock() - cantidadVendida);
+        System.out.println("stock actualizado exitosamente");
+
     }
 
     // Actualiza el stock de todos los productos en el carrito de compra

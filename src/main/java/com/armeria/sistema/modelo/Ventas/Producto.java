@@ -4,13 +4,13 @@ package com.armeria.sistema.modelo.Ventas;
 // Esta clase puede ser utilizada para representar tanto armas como accesorios y municiones
 public class Producto {
     private String nombre;
-    private String tipo; // "Pistola", "Escopeta", "Munición", "Accesorio", etc.
+    private TipoProducto tipo; // "Pistola", "Escopeta", "Munición", "Accesorio", etc.
     private double precioUnitario;
     private int stock;
     private String codigoSerie; // solo para armas
 
     // Constructor para productos con código de serie (armas)
-    public Producto(String nombre, String tipo, double precioUnitario, int stock, String codigoSerie) {
+    public Producto(String nombre, TipoProducto tipo, double precioUnitario, int stock, String codigoSerie) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.precioUnitario = precioUnitario;
@@ -19,7 +19,7 @@ public class Producto {
     }
 
     // Constructor para productos sin código de serie (accesorios, municiones)
-    public Producto(String nombre, String tipo, double precioUnitario, int stock) {
+    public Producto(String nombre, TipoProducto tipo, double precioUnitario, int stock) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.precioUnitario = precioUnitario;
@@ -35,11 +35,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public TipoProducto getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoProducto tipo) {
         this.tipo = tipo;
     }
 
@@ -66,6 +66,8 @@ public class Producto {
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
+
+
 
 }
 

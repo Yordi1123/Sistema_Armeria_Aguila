@@ -77,10 +77,24 @@ public class CarritoCompra {
                 System.out.println("No se puede agregar el producto al carrito.");
                 continue;
             }
+            ItemVenta itemSelect = new ItemVenta(productoSelect, cantidadProducto);
+            // Creando cadena de responsabilidad para el registro de productos
+            // Se crea una cadena de controladores para manejar diferentes tipos de productos
+            Controlador ventaArma = new ControladorArma();
+            Controlador ventaMunicion = new ControladorMunicion();
+            Controlador ventaAccesorio = new ControladorAccesorio();
 
-            // Agregar al carrito
-            agregarItem(new ItemVenta(productoSelect, cantidadProducto));
-            System.out.println("Producto agregado al carrito.");
+            ventaArma.setSiguiente(ventaMunicion);
+            ventaMunicion.setSiguiente(ventaAccesorio);
+
+            if (ventaArma.registrarProducto(cliente, itemSelect)) {
+                System.out.println("El producto se puede agregar al carrito.");
+                agregarItem(new ItemVenta(productoSelect, cantidadProducto));
+                System.out.println("Producto agregado al carrito.");
+            }
+            else {
+                System.out.println("El producto no se puede agregar al carrito.");
+            }
 
             System.out.print("¿Desea agregar otro producto? (si/no): ");
             String respuesta = scanner.nextLine().trim();
