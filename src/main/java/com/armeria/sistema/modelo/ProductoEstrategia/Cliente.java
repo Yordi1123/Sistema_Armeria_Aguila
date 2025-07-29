@@ -2,47 +2,63 @@ package com.armeria.sistema.modelo.ProductoEstrategia;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
 import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 
+// import com.armeria.sistema.modelo.ProductoEstrategia.AnalisisRotacion;
+
 public class Cliente {
-    public static void main(String[] args) {
-        List<ProductoArmeria> productos = new ArrayList<>();
+        public static void main(String[] args) {
+                List<ProductoArmeria> productos = new ArrayList<>();
 
-        productos.add(new ProductoArmaRegistro("A001", "Pistol Glock 17", TipoProducto.PISTOLA, "705g", 700.0, "Glock", "Glock 17", "Austria", 25, 10, 30, "9mm"));
-        productos.add(new ProductoArmaRegistro("A002", "Beretta M9", TipoProducto.ESCOPETA, "945g", 750.0, "Beretta", "M9", "Italia", 18, 12, 20, "9mm"));
-        productos.add(new ProductoArmaRegistro("A003", "SIG Sauer P226", TipoProducto.PISTOLA, "964g", 820.0, "SIG Sauer", "P226", "Alemania", 22, 8, 25, "9mm"));
-        productos.add(new ProductoArmaRegistro("E001", "Remington 870", TipoProducto.ESCOPETA, "3.2kg", 950.0, "Remington", "870", "EE.UU.", 15, 5, 40, "12 gauge"));
-        productos.add(new ProductoArmaRegistro("E002", "Mossberg 500", TipoProducto.ESCOPETA, "3.4kg", 890.0, "Mossberg", "500", "EE.UU.", 12, 6, 35, "12 gauge"));
-        productos.add(new ProductoArmaRegistro("E003", "Benelli M4", TipoProducto.ESCOPETA, "3.8kg", 1600.0, "Benelli", "M4", "Italia", 9, 4, 50, "12 gauge"));
+                productos.add(new ProductoArmaRegistro("A001", "Pistol Glock 17", TipoProducto.PISTOLA, "705g", 700.0,
+                                "Glock",
+                                "Glock 17", "Austria", 25, 10, 10, "9mm", 504.25));
+                productos.add(new ProductoArmaRegistro("A001", "Escopeta", TipoProducto.PISTOLA, "705g", 700.0, "Glock",
+                                "Glock 17", "Austria", 25, 10, 3, "9mm", 504.25));
 
-        String formato = "| %-6s | %-20s | %-9s | %-6s | %-10s | %-9s | %-10s | %-11s | %-8s | %-18s | %-6s | %-16s |\n";
+                ContextoAnalisis contexto = new ContextoAnalisis(new AnalisisRotacion());
+                List<ProductoRegistro> productosRegistro = productos.stream()
+                                .filter(p -> p instanceof ProductoRegistro)
+                                .map(p -> (ProductoRegistro) p)
+                                .collect(Collectors.toList());
 
-        System.out.println("+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
-        System.out.printf(formato, "Código", "Nombre", "Tipo", "Peso", "Precio(S/)", "Marca", "Modelo", "País Origen", "Calibre", "Unidades Vendidas", "Stock", "Días Inventario");
-        System.out.println("+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
+                contexto.analizarProductos(productosRegistro);
 
-        for (ProductoArmeria p : productos) {
-            if (p instanceof ProductoArmaRegistro) {
-                ProductoArmaRegistro arma = (ProductoArmaRegistro) p;
-                System.out.printf(formato,
-                        arma.getCodProducto(),
-                        arma.getNombre(),
-                        //arma.getTipo(),
-                        arma.getPeso(),
-                        String.format("%.2f", arma.getPrecioVenta()),
-                        arma.getMarca(),
-                        arma.getModelo(),
-                        arma.getPaisOrigen(),
-                        arma.getCalibre(),
-                        arma.getUnidadesVendidas(),
-                        arma.getStock(),
-                        arma.getDiasInventario()
-                );
-            }
+                String formato = "| %-6s | %-20s | %-9s | %-6s | %-10s | %-9s | %-10s | %-11s | %-8s | %-18s | %-6s | %-16s | %-12s |\n";
+
+                System.out.println(
+                                "+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
+                System.out.printf(formato, "Código", "Nombre", "Tipo", "Peso", "Precio(S/)", "Marca", "Modelo",
+                                "País Origen",
+                                "Calibre", "Unidades Vendidas", "Stock", "Días Inventario", "Precio Costo");
+
+                System.out.println(
+                                "+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
+
+                for (ProductoArmeria p : productos) {
+                        if (p instanceof ProductoArmaRegistro) {
+                                ProductoArmaRegistro arma = (ProductoArmaRegistro) p;
+                                System.out.printf(formato,
+                                                arma.getCodProducto(),
+                                                arma.getNombre(),
+                                                arma.getTipo(),
+                                                arma.getPeso(),
+                                                String.format("%.2f", arma.getPrecioVenta()),
+                                                arma.getMarca(),
+                                                arma.getModelo(),
+                                                arma.getPaisOrigen(),
+                                                arma.getCalibre(),
+                                                arma.getUnidadesVendidas(),
+                                                arma.getStock(),
+                                                arma.getDiasInventario(),
+                                                String.format("%.2f", arma.getPrecioCosto()));
+                        }
+                }
+
+                System.out.println(
+                                "+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
         }
-
-        System.out.println("+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
-    }
 }
-

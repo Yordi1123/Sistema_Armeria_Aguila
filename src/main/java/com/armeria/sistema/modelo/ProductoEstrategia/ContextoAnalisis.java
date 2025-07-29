@@ -1,5 +1,4 @@
 package com.armeria.sistema.modelo.ProductoEstrategia;
-
 import java.util.List;
 
 public class ContextoAnalisis {
@@ -17,8 +16,6 @@ public class ContextoAnalisis {
         if (estrategia == null) {
             throw new IllegalStateException("No se ha definido una estrategia de análisis");
         }
-        else{
-            System.out.println("No se ha seleccionado una estrategia de analisis. Por favor, elija una estrategia válida."); // Mensaje de error si no se ha definido una estrategia
+            estrategia.analizar(productos);
         }
-    }
-}
+ }

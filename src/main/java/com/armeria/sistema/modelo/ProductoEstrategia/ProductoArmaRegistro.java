@@ -8,8 +8,8 @@ public class ProductoArmaRegistro extends ProductoRegistro {
 
     public ProductoArmaRegistro(String codProducto, String nombre, TipoProducto tipo, String peso,
                                 double precioVenta, String marca, String modelo, String paisOrigen,
-                                int unidadesVendidas, int stock, int diasInventario, String calibre) {
-        super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, stock, paisOrigen, unidadesVendidas, diasInventario);
+                                int unidadesVendidas, int stock, int diasInventario, String calibre, double precioCosto) {
+        super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, stock, paisOrigen, unidadesVendidas, diasInventario, precioCosto);
         this.calibre = calibre;
     }
 
@@ -25,7 +25,7 @@ public class ProductoArmaRegistro extends ProductoRegistro {
     }
 
 
-    /*@Override
+    @Override
     public String toString() {
         return "ProductoArmaRegistro {" +
                 "\n  Código = '" + getCodProducto() + '\'' +
@@ -41,7 +41,7 @@ public class ProductoArmaRegistro extends ProductoRegistro {
                 ",\n  Stock = " + getStock() +
                 ",\n  Días en Inventario = " + getDiasInventario() +
                 "\n}";
-    }*/
+    }
 
     @Override
     public void mostrarDetalles() {

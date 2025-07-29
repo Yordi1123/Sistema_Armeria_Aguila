@@ -5,16 +5,23 @@ import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 public abstract class ProductoRegistro extends ProductoArmeria {
     private int unidadesVendidas;
     private int diasInventario;
+    private double precioCosto;
 
     public ProductoRegistro(String codProducto, String nombre, TipoProducto tipo,
                             String peso, double precioVenta, String marca,
-                            String modelo,  int stock, String paisOrigen, int unidadesVendidas, int diasInventario) {
+                            String modelo,  int stock, String paisOrigen, int unidadesVendidas, int diasInventario, double precioCosto) {
         super(codProducto, nombre, tipo, peso, precioVenta, marca, modelo, stock, paisOrigen);
         setUnidadesVendidas(unidadesVendidas);
         setStock(stock);
         setDiasInventario(diasInventario);
+        setPrecioCosto(precioCosto);
 
     }
+    // este get no va --> me confundi
+    // este solo debe ser explusivo de ProductoArmaRegistro
+    /*public String getCalibre() {
+        return calibre;
+    }*/
 
     public int getUnidadesVendidas() {
         return unidadesVendidas;
@@ -87,12 +94,12 @@ public abstract class ProductoRegistro extends ProductoArmeria {
     }
 
     // Corrección del metodo
-    /*public void setTipo(TipoProducto tipo) {
-        if (tipo == null || tipo.isEmpty()) {
+    public void setTipo(TipoProducto tipo) {
+        if (tipo == null) {
             throw new IllegalArgumentException("El tipo de producto no puede ser nulo o vacío");
         }
         this.tipo = tipo;
-    }*/
+    }
 
     public String getPeso() {
         return peso;
@@ -140,8 +147,14 @@ public abstract class ProductoRegistro extends ProductoArmeria {
     }
 
     public double getPrecioCosto() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPrecioCosto'");
+        return precioCosto;
+    }
+
+    public void setPrecioCosto(double precioCosto) {
+        if (precioCosto < 0) {
+            throw new IllegalArgumentException("El precio de costo no puede ser negativo");
+        }
+    this.precioCosto = precioCosto;
     }
     
 }
