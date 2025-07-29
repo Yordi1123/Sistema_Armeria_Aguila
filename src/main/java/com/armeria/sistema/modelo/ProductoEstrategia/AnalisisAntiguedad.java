@@ -17,5 +17,4 @@ public class AnalisisAntiguedad implements EstrategiaAnalisis {
             });
         System.out.println("===Fin del análisis de antigüedad de los productos===");
     }
-    
 }
