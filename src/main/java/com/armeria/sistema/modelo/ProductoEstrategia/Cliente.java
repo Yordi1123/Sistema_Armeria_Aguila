@@ -7,15 +7,17 @@ import java.util.stream.Collectors;
 import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
 import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 
+// import com.armeria.sistema.modelo.ProductoEstrategia.AnalisisRotacion;
+
 public class Cliente {
         public static void main(String[] args) {
                 List<ProductoArmeria> productos = new ArrayList<>();
 
                 productos.add(new ProductoArmaRegistro("A001", "Pistol Glock 17", TipoProducto.PISTOLA, "705g", 700.0,
-                                "Glock", "Glock 17", "Austria", 25, 10, 10, "9mm", 504.25));
-                productos.add(new ProductoArmaRegistro("A002", "Escopeta Remington", TipoProducto.ESCOPETA, "3.5kg",
-                                850.0,
-                                "Remington", "870 Express", "USA", 10, 5, 20, "12ga", 630.50));
+                                "Glock",
+                                "Glock 17", "Austria", 25, 10, 10, "9mm", 504.25));
+                productos.add(new ProductoArmaRegistro("A001", "Escopeta", TipoProducto.PISTOLA, "705g", 700.0, "Glock",
+                                "Glock 17", "Austria", 25, 10, 3, "9mm", 504.25));
 
                 ContextoAnalisis contexto = new ContextoAnalisis(new AnalisisRotacion());
                 List<ProductoRegistro> productosRegistro = productos.stream()
@@ -25,13 +27,16 @@ public class Cliente {
 
                 contexto.analizarProductos(productosRegistro);
 
-                String formato = "| %-8s | %-22s | %-9s | %-6s | %-10s | %-10s | %-14s | %-12s | %-8s | %-17s | %-6s | %-15s | %-13s |\n";
-                String separador = "+----------+------------------------+-----------+--------+------------+------------+----------------+--------------+----------+-------------------+--------+-----------------+---------------+";
+                String formato = "| %-6s | %-20s | %-9s | %-6s | %-10s | %-9s | %-10s | %-11s | %-8s | %-18s | %-6s | %-16s | %-12s |\n";
 
-                System.out.println(separador);
+                System.out.println(
+                                "+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
                 System.out.printf(formato, "Código", "Nombre", "Tipo", "Peso", "Precio(S/)", "Marca", "Modelo",
-                                "País Origen", "Calibre", "Unid. Vendidas", "Stock", "Días Inventario", "Precio Costo");
-                System.out.println(separador);
+                                "País Origen",
+                                "Calibre", "Unidades Vendidas", "Stock", "Días Inventario", "Precio Costo");
+
+                System.out.println(
+                                "+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
 
                 for (ProductoArmeria p : productos) {
                         if (p instanceof ProductoArmaRegistro) {
@@ -53,7 +58,7 @@ public class Cliente {
                         }
                 }
 
-                System.out.println(separador);
-
+                System.out.println(
+                                "+--------+----------------------+-----------+--------+------------+-----------+------------+-------------+----------+--------------------+--------+------------------+");
         }
 }

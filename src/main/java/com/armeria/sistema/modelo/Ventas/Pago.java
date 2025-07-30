@@ -3,6 +3,8 @@ package com.armeria.sistema.modelo.Ventas;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Pago {
     private Cliente cliente;
@@ -31,72 +33,43 @@ public class Pago {
             return false;
     }
 
-    // Metodo para generar un comprobante de pago (esta se extiende al modulo Comprobante de Pago)
-    public void generarComprobante(CarritoCompra carritoCompra) {
-        System.out.println("\n\n===================== COMPROBANTE DE PAGO =====================");
-        System.out.println("                        ARMERÍA S.A.C.");
-        System.out.println("                      RUC: 12345678901");
-        System.out.println("---------------------------------------------------------------");
-        System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
-        System.out.println("Fecha: " + fechaPago.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        System.out.println("---------------------------------------------------------------");
-        System.out.printf("%-25s %8s %12s %12s%n", "Producto", "Cant.", "P. Unit (S/.)", "Subtotal");
-        System.out.println("---------------------------------------------------------------");
-
-        double total = 0.0;
-        for (ItemVenta item : carritoCompra.getItemVentaList()) {
-            String nombre = item.getProducto().getNombre();
-            int cantidad = item.getCantidad();
-            double precioUnitario = item.getProducto().getPrecioUnitario();
-            double subtotal = cantidad * precioUnitario;
-            total += subtotal;
-
-            System.out.printf(Locale.US, "%-25s %8d %12.2f %12.2f%n", nombre, cantidad, precioUnitario, subtotal);
-        }
-
-        System.out.println("---------------------------------------------------------------");
-        System.out.printf(Locale.US, "%-47s %12.2f%n", "TOTAL A PAGAR (S/.):", total);
-        System.out.printf("%-47s %12s%n", "Método de Pago:", metodoPago);
-        System.out.println("===============================================================\n\n");
-
-    }
-
-    // Método para seleccionar el método de pago
+    // Metodo para seleccionar el metodo de pago
     public void seleccionarMedioPago() {
-        System.out.println("Selecione medio de pago:");
-        System.out.println("1. Tarjeta de Credito");
-        System.out.println("2. Tarjeta de Debito");
-        System.out.println("3. Efectivo");
-        System.out.println("4. Transferencia Bancaria");
-        System.out.println("5. Yape");
-        System.out.println("6. Blimp");
-        System.out.println("==============================================");
-        int metodoSelect = Integer.parseInt(System.console().readLine());
+        Scanner scanner = new Scanner(System.in);
+        Map<Integer, MetodoPagoEnum> opciones = Map.of(
+                1, MetodoPagoEnum.TARJETA_CREDITO,
+                2, MetodoPagoEnum.TARJETA_DEBITO,
+                3, MetodoPagoEnum.EFECTIVO,
+                4, MetodoPagoEnum.TRANSFERENCIA_BANCARIA,
+                5, MetodoPagoEnum.YAPE,
+                6, MetodoPagoEnum.BLIMP
+        );
 
-        switch (metodoSelect) {
+        while (true) {
+            System.out.println("Seleccione medio de pago:");
+            System.out.println("1. Tarjeta de Crédito");
+            System.out.println("2. Tarjeta de Débito");
+            System.out.println("3. Efectivo");
+            System.out.println("4. Transferencia Bancaria");
+            System.out.println("5. Yape");
+            System.out.println("6. Blimp");
+            System.out.println("==============================================");
+            System.out.print("Ingrese el número de opción: ");
 
-            case 1:
-                this.metodoPago = MetodoPagoEnum.TARJETA_CREDITO;
-                break;
-            case 2:
-                this.metodoPago = MetodoPagoEnum.TARJETA_DEBITO;
-                break;
-            case 3:
-                this.metodoPago = MetodoPagoEnum.EFECTIVO;
-                break;
-            case 4:
-                this.metodoPago = MetodoPagoEnum.TRANSFERENCIA_BANCARIA;
-                break;
-            case 5:
-                this.metodoPago = MetodoPagoEnum.YAPE;
-                break;
-            case 6:
-                this.metodoPago = MetodoPagoEnum.BLIMP;
-                break;
+            try {
+                int opcion = Integer.parseInt(scanner.nextLine().trim());
 
-            default:
-                System.out.println("Método de pago no válido. Seleccione nuevamente.");
-                break;
+                if (opciones.containsKey(opcion)) {
+                    this.metodoPago = opciones.get(opcion);
+                    System.out.println("Método de pago seleccionado: " + this.metodoPago);
+                    break;
+                } else {
+                    System.out.println("Opción inválida. Intente nuevamente.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no válida. Por favor ingrese un número.");
+            }
         }
     }
 
@@ -125,13 +98,8 @@ public class Pago {
         this.fechaPago = fechaPago;
     }
 
-    // Enum para los métodos de pago
-    public enum MetodoPagoEnum {
-        TARJETA_CREDITO,
-        TARJETA_DEBITO,
-        EFECTIVO,
-        TRANSFERENCIA_BANCARIA,
-        YAPE,
-        BLIMP;
+    public Cliente getCliente() {
+        return cliente;
     }
+
 }

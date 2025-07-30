@@ -17,6 +17,7 @@ public class CarritoCompra {
         return itemVentaList;
     }
 
+    // Métodos para agregar, eliminar y vaciar el carrito de compra
     public void agregarItem(ItemVenta item) {
         System.out.println("Agregando item al carrito: " + item.getProducto().getNombre() + " - Cantidad: " + item.getCantidad());
         itemVentaList.add(item);
@@ -34,75 +35,89 @@ public class CarritoCompra {
     // Metodo para procesar productos en el carrito
     // Permite al usuario ingresar productos y cantidades, verifica disponibilidad y agrega al carrito
     public void procesarProductos() {
-
         Scanner scanner = new Scanner(System.in);
         boolean seguir = true;
 
         System.out.println("Procesar productos en el carrito de compra.");
 
         while (seguir) {
-            System.out.print("Ingrese el nombre del producto: ");
-            String nombreProducto = scanner.nextLine().trim();
+            Producto producto = solicitarProducto(scanner);
+            if (producto == null) continue;
 
-            // Validar entrada
-            if (nombreProducto.isEmpty()) {
-                System.out.println("El nombre del producto no puede estar vacío.");
-                continue;
-            }
+            int cantidad = solicitarCantidad(scanner);
+            if (cantidad <= 0) continue;
 
-            Producto productoSelect = Inventario.buscarProductoPorNombre(nombreProducto);
-
-            if (productoSelect == null) {
-                System.out.println("El producto '" + nombreProducto + "' no fue encontrado en el inventario.");
-                continue;
-            }
-
-            System.out.print("Ingrese la cantidad del producto: ");
-            int cantidadProducto;
-            try {
-                cantidadProducto = Integer.parseInt(scanner.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("Cantidad inválida. Ingrese un número entero.");
-                continue;
-            }
-
-            if (cantidadProducto <= 0) {
-                System.out.println("La cantidad debe ser mayor que cero.");
-                continue;
-            }
-
-            boolean disponible = Inventario.verificarDisponibilidad(productoSelect.getNombre(), cantidadProducto);
-
-            if (!disponible) {
+            if (!Inventario.verificarDisponibilidad(producto.getNombre(), cantidad)) {
                 System.out.println("No se puede agregar el producto al carrito.");
                 continue;
             }
-            ItemVenta itemSelect = new ItemVenta(productoSelect, cantidadProducto);
-            // Creando cadena de responsabilidad para el registro de productos
-            // Se crea una cadena de controladores para manejar diferentes tipos de productos
-            Controlador ventaArma = new ControladorArma();
-            Controlador ventaMunicion = new ControladorMunicion();
-            Controlador ventaAccesorio = new ControladorAccesorio();
 
-            ventaArma.setSiguiente(ventaMunicion);
-            ventaMunicion.setSiguiente(ventaAccesorio);
+            ItemVenta item = new ItemVenta(producto, cantidad);
+            Controlador controlador = crearCadenaControladores();
 
-            if (ventaArma.registrarProducto(cliente, itemSelect)) {
+            if (controlador.registrarProducto(cliente, item)) {
                 System.out.println("El producto se puede agregar al carrito.");
-                agregarItem(new ItemVenta(productoSelect, cantidadProducto));
+                agregarItem(item);
                 System.out.println("Producto agregado al carrito.");
-            }
-            else {
+            } else {
                 System.out.println("El producto no se puede agregar al carrito.");
             }
 
-            System.out.print("¿Desea agregar otro producto? (si/no): ");
-            String respuesta = scanner.nextLine().trim();
+            seguir = deseaContinuar(scanner);
+        }
+        System.out.println("Finalizando el proceso de productos en el carrito.");
+    }
 
-            if (!respuesta.equalsIgnoreCase("si")) {
-                seguir = false;
-                System.out.println("Finalizando el proceso de productos en el carrito.");
+// ------------------------- MÉTODOS AUXILIARES -------------------------
+
+    private Producto solicitarProducto(Scanner scanner) {
+        System.out.print("Ingrese el nombre del producto: ");
+        String nombre = scanner.nextLine().trim();
+
+        if (nombre.isEmpty()) {
+            System.out.println("El nombre del producto no puede estar vacío.");
+            return null;
+        }
+
+        Producto producto = Inventario.buscarProductoPorNombre(nombre);
+
+        if (producto == null) {
+            System.out.println("El producto '" + nombre + "' no fue encontrado en el inventario.");
+        }
+
+        return producto;
+    }
+
+    private int solicitarCantidad(Scanner scanner) {
+        System.out.print("Ingrese la cantidad del producto: ");
+        try {
+            int cantidad = Integer.parseInt(scanner.nextLine().trim());
+            if (cantidad <= 0) {
+                System.out.println("La cantidad debe ser mayor que cero.");
+                return -1;
             }
+            return cantidad;
+        } catch (NumberFormatException e) {
+            System.out.println("Cantidad inválida. Ingrese un número entero.");
+            return -1;
         }
     }
+
+    private boolean deseaContinuar(Scanner scanner) {
+        System.out.print("¿Desea agregar otro producto? (si/no): ");
+        String respuesta = scanner.nextLine().trim();
+        return respuesta.equalsIgnoreCase("si");
+    }
+
+    private Controlador crearCadenaControladores() {
+        Controlador ventaArma = new ControladorArma();
+        Controlador ventaMunicion = new ControladorMunicion();
+        Controlador ventaAccesorio = new ControladorAccesorio();
+
+        ventaArma.setSiguiente(ventaMunicion);
+        ventaMunicion.setSiguiente(ventaAccesorio);
+
+        return ventaArma;
+    }
+
 }

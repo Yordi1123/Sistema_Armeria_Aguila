@@ -61,9 +61,7 @@ public class VentaService {
         Venta venta1 = new Venta();
         venta1.solicitarDatosCliente();
         venta1.registrarProductos();
-        venta1.calcularTotalVenta();
-        venta1.procesarPago();
-        venta1.actualizarInventario();
+        venta1.verificarCompra();
 
         System.out.println("Inventario actualizado después de la venta:");
         Inventario.mostrarInventario();

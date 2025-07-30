@@ -5,6 +5,7 @@ import java.util.List;
 public class ItemVenta {
     private Producto producto;
     private int cantidad;
+    private double impuesto;
 
     public ItemVenta(Producto producto, int cantidad) {
         this.producto = producto;
@@ -37,5 +38,9 @@ public class ItemVenta {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public void setImpuesto(double impuesto) {
+        this.impuesto = impuesto;
     }
 }

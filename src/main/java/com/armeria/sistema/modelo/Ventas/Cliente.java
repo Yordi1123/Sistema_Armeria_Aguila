@@ -1,12 +1,17 @@
 package com.armeria.sistema.modelo.Ventas;
 
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Cliente {
     private String dni;
     private String nombre;
     private String apellido;
+    private LocalDate fechaNacimiento;
     private boolean tieneLicencia;
-    //private List<Venta> historialVentas;
+    private TipoLicencia tipoLicencia;
+
 
     public Cliente(String dni, String nombre, String apellido, boolean tieneLicencia) {
         this.dni = dni;
@@ -21,10 +26,6 @@ public class Cliente {
         return dni;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -37,16 +38,23 @@ public class Cliente {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public TipoLicencia getTipoLicencia() {
+        return tipoLicencia;
     }
 
+    public void setTipoLicencia(TipoLicencia tipoLicencia) {
+        this.tipoLicencia = tipoLicencia;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int calcularEdad() {
+        return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
+    }
     public boolean isTieneLicencia() {
         return tieneLicencia;
-    }
-
-    public void setTieneLicencia(boolean tieneLicencia) {
-        this.tieneLicencia = tieneLicencia;
     }
 
 }
