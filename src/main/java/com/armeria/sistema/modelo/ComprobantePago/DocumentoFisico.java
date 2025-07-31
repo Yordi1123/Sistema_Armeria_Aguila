@@ -1,16 +1,16 @@
-package com.armeria.sistema.modelo.ComprobantePago.tipoFisico;
+package com.armeria.sistema.modelo.ComprobantePago;
 import java.time.LocalDate;
 
-import com.armeria.sistema.modelo.ComprobantePago.docPago.docTrasladoArma;
+// import com.armeria.sistema.modelo.ComprobantePago.docTrasladoArma;
 
-public class docFisico extends docTrasladoArma {
+public class DocumentoFisico extends DocumentoTrasladoBienesArmas {
     private String oficina;
 
-    public docFisico() {
+    public DocumentoFisico() {
         // Constructor por defecto
     }
 
-    public docFisico(String nombreVendedor, String rucEmpresa, String direccionEmpresa, String nombreCliente, String dniCliente, String direccionCliente, LocalDate fechaEmision, String descripcionBienes, double montoTotal, String arma, String oficina) {
+    public DocumentoFisico(String nombreVendedor, String rucEmpresa, String direccionEmpresa, String nombreCliente, String dniCliente, String direccionCliente, LocalDate fechaEmision, String descripcionBienes, double montoTotal, String arma, String oficina) {
         super(nombreVendedor, arma, descripcionBienes, direccionCliente, rucEmpresa, direccionEmpresa, nombreCliente, dniCliente, fechaEmision, montoTotal);
         this.oficina = oficina;
     }

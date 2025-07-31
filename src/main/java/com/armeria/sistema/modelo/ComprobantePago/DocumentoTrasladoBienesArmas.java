@@ -1,8 +1,8 @@
-package com.armeria.sistema.modelo.ComprobantePago.docPago;
+package com.armeria.sistema.modelo.ComprobantePago;
 
 import java.time.LocalDate;
 
-public abstract class docTrasladoArma {
+public abstract class DocumentoTrasladoBienesArmas {
     protected String nombreVendedor;
     protected String rucEmpresa;
     protected String direccionEmpresa;
@@ -14,11 +14,13 @@ public abstract class docTrasladoArma {
     protected double montoTotal;
     protected String arma;
 
-    public docTrasladoArma() {
+    public DocumentoTrasladoBienesArmas() {
         // Constructor por defecto
     }
 
-    public docTrasladoArma(String nombreVendedor,String arma, String descripcionBienes, String direccionCliente, String rucEmpresa, String direccionEmpresa, String nombreCliente, String dniCliente, LocalDate fechaEmision, double montoTotal) {
+    public DocumentoTrasladoBienesArmas(String nombreVendedor, String arma, String descripcionBienes,
+                                        String direccionCliente, String rucEmpresa, String direccionEmpresa,
+                                        String nombreCliente, String dniCliente, LocalDate fechaEmision, double montoTotal) {
         this.nombreVendedor = nombreVendedor;
         this.rucEmpresa = rucEmpresa;
         this.direccionEmpresa = direccionEmpresa;
@@ -32,8 +34,4 @@ public abstract class docTrasladoArma {
     }
 
     public abstract void generarDocumento();
-    
-        // Lógica para generar el documento de traslado de arma
-
-    
 }
