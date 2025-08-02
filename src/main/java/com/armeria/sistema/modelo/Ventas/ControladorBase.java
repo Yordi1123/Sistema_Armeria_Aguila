@@ -43,7 +43,4 @@ public abstract class ControladorBase implements Controlador {
         if (siguiente == null) return true;
         return siguiente.registrarProducto(cliente, itemVenta, itemVentaList);
     }
-
-
-
 }

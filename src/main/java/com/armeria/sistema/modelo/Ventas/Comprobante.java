@@ -14,8 +14,8 @@ public class Comprobante {
 
     public void generarComprobante() {
         System.out.println("\n\n===================== COMPROBANTE DE PAGO =====================");
-        System.out.println("                        ARMERÍA S.A.C.");
-        System.out.println("                      RUC: 12345678901");
+        System.out.println("                    Armería El Águila S.R.L");
+        System.out.println("                      RUC: 20445412628");
         System.out.println("---------------------------------------------------------------");
         System.out.println("Cliente: " + pago.getCliente().getNombre() + " " + pago.getCliente().getApellido());
         System.out.println("Fecha: " + pago.getFechaPago().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));

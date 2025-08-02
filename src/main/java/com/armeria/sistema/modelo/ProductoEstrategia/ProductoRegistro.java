@@ -7,6 +7,7 @@ public abstract class ProductoRegistro extends ProductoArmeria {
     private int diasInventario;
     private double precioCosto;
 
+
     //private ProductoArmeria productoArmeria;
 
     public ProductoRegistro(String codProducto, String nombre, TipoProducto tipo,
@@ -17,7 +18,6 @@ public abstract class ProductoRegistro extends ProductoArmeria {
         setStock(stock);
         setDiasInventario(diasInventario);
         setPrecioCosto(precioCosto);
-
     }
     // este get no va --> me confundi
     // este solo debe ser explusivo de ProductoArmaRegistro

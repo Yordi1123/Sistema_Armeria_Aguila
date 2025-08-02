@@ -78,11 +78,17 @@ public class ControladorArma extends ControladorBase {
 
     @Override
     public boolean excedeLimitePermitido(Cliente cliente, ItemVenta itemventa, List<ItemVenta> listaItemVenta) {
-        System.out.println("Verificando si el cliente excede el límite de armas permitidas según su tipo de licencia.");
 
         TipoLicencia tipoLicencia = cliente.getTipoLicencia();
-        Producto producto = itemventa.getProducto();
         Integer limiteArmas = LIMITE_ARMAS.get(tipoLicencia);
+        Producto producto = itemventa.getProducto();
+
+
+        System.out.printf("Comprando armas con licencia %s. Límite: %d arma(s) %n",
+                tipoLicencia, limiteArmas);
+        System.out.println("Cantidad solicitada: " + itemventa.getCantidad());
+
+
 
         if (itemventa.getCantidad() + revisarAcumulado(producto, listaItemVenta)> limiteArmas) {
             return true;
