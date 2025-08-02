@@ -13,11 +13,6 @@ public class ItemVenta {
     }
 
 
-    /**
-     * Calcula el subtotal del item de venta.
-     *
-     * @return El subtotal calculado como el precio unitario del producto multiplicado por la cantidad.
-     */
     public double calcularSubtotal() {
         return producto.getPrecioUnitario() * cantidad;
     }

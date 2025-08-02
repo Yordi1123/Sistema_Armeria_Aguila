@@ -12,9 +12,9 @@ public class VentaService {
 
         // Crear producto
         Producto producto1 = new Producto("Pistola Glock 17", TipoProducto.ARMA, 500.0, 10, "ABC123XYZ");
-        Producto producto2 = new Producto("Municion 9mm", TipoProducto.MUNICION, 20.0, 100);
+        Producto producto2 = new Producto("Municion 9mm", TipoProducto.MUNICION, 20.0, 1000);
         Producto producto3 = new Producto("Escopeta AR-15", TipoProducto.ARMA, 1200.0, 5, "RIF123XYZ");
-        Producto producto4 = new Producto("Municion .223 Remington", TipoProducto.MUNICION, 30.0, 50);
+        Producto producto4 = new Producto("Municion .223 Remington", TipoProducto.MUNICION, 30.0, 500);
         Producto producto5 = new Producto("Accesorio Mira Telescopica", TipoProducto.ACCESORIO, 150.0, 20);
         Producto producto6 = new Producto("Arnes de Seguridad", TipoProducto.ACCESORIO, 75.0, 15);
         Producto producto7 = new Producto("Botiquin PA", TipoProducto.ACCESORIO, 50.0, 30);

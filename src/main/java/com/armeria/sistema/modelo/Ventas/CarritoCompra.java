@@ -55,7 +55,7 @@ public class CarritoCompra {
             ItemVenta item = new ItemVenta(producto, cantidad);
             Controlador controlador = crearCadenaControladores();
 
-            if (controlador.registrarProducto(cliente, item)) {
+            if (controlador.registrarProducto(cliente, item, itemVentaList )) {
                 System.out.println("El producto se puede agregar al carrito.");
                 agregarItem(item);
                 System.out.println("Producto agregado al carrito.");
@@ -104,9 +104,9 @@ public class CarritoCompra {
     }
 
     private boolean deseaContinuar(Scanner scanner) {
-        System.out.print("¿Desea agregar otro producto? (si/no): ");
+        System.out.print("¿Desea agregar otro producto? (s/n): ");
         String respuesta = scanner.nextLine().trim();
-        return respuesta.equalsIgnoreCase("si");
+        return respuesta.equalsIgnoreCase("s");
     }
 
     private Controlador crearCadenaControladores() {
@@ -114,6 +114,7 @@ public class CarritoCompra {
         Controlador ventaMunicion = new ControladorMunicion();
         Controlador ventaAccesorio = new ControladorAccesorio();
 
+        // Configurar la cadena de responsabilidad
         ventaArma.setSiguiente(ventaMunicion);
         ventaMunicion.setSiguiente(ventaAccesorio);
 

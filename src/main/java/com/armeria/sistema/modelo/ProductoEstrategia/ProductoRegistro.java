@@ -7,6 +7,8 @@ public abstract class ProductoRegistro extends ProductoArmeria {
     private int diasInventario;
     private double precioCosto;
 
+    //private ProductoArmeria productoArmeria;
+
     public ProductoRegistro(String codProducto, String nombre, TipoProducto tipo,
                             String peso, double precioVenta, String marca,
                             String modelo,  int stock, String paisOrigen, int unidadesVendidas, int diasInventario, double precioCosto) {
@@ -24,6 +26,8 @@ public abstract class ProductoRegistro extends ProductoArmeria {
     }*/
 
     public int getUnidadesVendidas() {
+
+
         return unidadesVendidas;
     }
 

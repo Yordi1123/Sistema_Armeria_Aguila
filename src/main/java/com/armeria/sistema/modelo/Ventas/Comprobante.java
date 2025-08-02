@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Comprobante {
-
     private Pago pago;
     private CarritoCompra carritoCompra;
 
@@ -55,7 +54,4 @@ public class Comprobante {
         return carritoCompra;
     }
 
-    public void setCarritoCompra(CarritoCompra carritoCompra) {
-        this.carritoCompra = carritoCompra;
-    }
 }

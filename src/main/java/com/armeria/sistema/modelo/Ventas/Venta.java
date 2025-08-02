@@ -71,10 +71,27 @@ public class Venta {
 
         // Solicitar si tiene licencia
         boolean tieneLicencia;
+
+        TipoLicencia tipoLicencia = null;
+
         while (true) {
             System.out.print("¿El cliente tiene licencia para comprar armas? (s/n): ");
             String respuesta = scanner.nextLine().trim().toLowerCase();
             if (respuesta.equals("s") || respuesta.equals("si")) {
+                System.out.println("Ingrese el tipo de licencia (L1, L2, L3, L4, L5, L6): ");
+                switch (scanner.nextLine().trim().toUpperCase()) {
+                    case "L1": tipoLicencia = TipoLicencia.L1_DEFENSA_PERSONAL; break;
+                    case "L2": tipoLicencia = TipoLicencia.L2_SEGURIDA_DPRIVADA; break;
+                    case "L3": tipoLicencia = TipoLicencia.L3_CAZA_DEPORTIVA; break;
+                    case "L4": tipoLicencia = TipoLicencia.L4_TIRO_DEPORTIVO; break;
+                    case "L5": tipoLicencia = TipoLicencia.L5_COLECCION; break;
+                    case "L6": tipoLicencia = TipoLicencia.L6_INSTIUCIONAL;
+                        break;
+                    default:
+                        System.out.println("Tipo de licencia inválido. Debe ser L1, L2, L3, L4, L5 o L6.");
+                        continue; // Volver a solicitar la licencia
+                }
+
                 tieneLicencia = true;
                 break;
             } else if (respuesta.equals("n") || respuesta.equals("no")) {
@@ -87,6 +104,7 @@ public class Venta {
 
         // Crear cliente y carrito
         this.cliente = new Cliente(dni, nombre, apellido, tieneLicencia);
+        this.cliente.setTipoLicencia(tipoLicencia);
         this.cliente.setFechaNacimiento(fechaNacimiento);
         this.carrito = new CarritoCompra(cliente);
 
@@ -115,7 +133,7 @@ public class Venta {
         System.out.println("=====================================");
         System.out.printf("Cliente        : %s %s%n", cliente.getNombre(), cliente.getApellido());
         System.out.printf("DNI            : %s%n", cliente.getDni());
-        System.out.printf("Tiene licencia : %s%n", cliente.isTieneLicencia() ? "Sí" : "No");
+        System.out.printf("Licencia : %s%n", cliente.isTieneLicencia() ? cliente.getTipoLicencia() : "no tiene");
         System.out.println("-------------------------------------");
         System.out.println("Productos en el carrito:");
         System.out.println("-------------------------------------");
