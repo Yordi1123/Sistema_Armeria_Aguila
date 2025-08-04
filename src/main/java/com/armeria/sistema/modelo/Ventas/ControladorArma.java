@@ -49,10 +49,6 @@ public class ControladorArma extends ControladorBase {
             return false;
         }
 
-        // 4. Calcular impuestos IGV del 18%
-        double impuestoMunicion = 0.18;
-        itemventa.setImpuesto(impuestoMunicion);
-
         return true;
     }
 

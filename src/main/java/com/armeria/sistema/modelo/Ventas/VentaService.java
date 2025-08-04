@@ -2,12 +2,6 @@ package com.armeria.sistema.modelo.Ventas;
 
 public class VentaService {
 
-
-
-    public void procesarVenta(){
-
-    }
-
     public static void main(String[] args) {
 
         // Crear producto
@@ -68,6 +62,5 @@ public class VentaService {
 
 
     }
-
 
 }

@@ -43,14 +43,6 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public String getCodigoSerie() {
-        return codigoSerie;
-    }
-
-    public void setCodigoSerie(String codigoSerie) {
-        this.codigoSerie = codigoSerie;
-    }
-
     public int getStock() {
         return stock;
     }
@@ -62,12 +54,6 @@ public class Producto {
     public double getPrecioUnitario() {
         return precioUnitario;
     }
-
-    public void setPrecioUnitario(double precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-
 
 }
 

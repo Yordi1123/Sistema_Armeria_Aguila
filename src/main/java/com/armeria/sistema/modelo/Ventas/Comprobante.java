@@ -35,7 +35,8 @@ public class Comprobante {
         }
 
         System.out.println("---------------------------------------------------------------");
-        System.out.printf(Locale.US, "%-47s %12.2f%n", "TOTAL A PAGAR (S/.):", total);
+        System.out.printf("%-47s %12s%n", "IGV (0.18):", total*carritoCompra.getIGV());
+        System.out.printf(Locale.US, "%-47s %12.2f%n", "TOTAL A PAGAR (S/.):", total*(1+ carritoCompra.getIGV()));
         System.out.printf("%-47s %12s%n", "Método de Pago:", pago.getMetodoPago());
         System.out.println("===============================================================\n\n");
 
@@ -50,8 +51,5 @@ public class Comprobante {
         this.pago = pago;
     }
 
-    public CarritoCompra getCarritoCompra() {
-        return carritoCompra;
-    }
 
 }

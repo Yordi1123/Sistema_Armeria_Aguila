@@ -1,8 +1,6 @@
 package com.armeria.sistema.modelo.Ventas;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 

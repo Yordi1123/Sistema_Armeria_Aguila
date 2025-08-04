@@ -59,8 +59,9 @@ public class Venta {
             try {
                 fechaNacimiento = LocalDate.parse(fechaInput);
                 int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
-                if (edad < 18) {
-                    System.out.println("El cliente debe ser mayor de edad. Edad actual: " + edad + " años.");
+
+                if (edad > 85 || edad < 18) {
+                    System.out.println("Edad del cliente fuera del rango (18-85). Edad actual: " + edad + " años.");
                     return; // Detener el registro
                 }
                 break;
@@ -114,6 +115,7 @@ public class Venta {
 
     // Registrar producto en el carrito de compras
     public void registrarProductos() {
+        if (cliente == null){return;}
         carrito.procesarProductos();
     }
 
@@ -153,6 +155,8 @@ public class Venta {
 
     // Verificar la compra antes de procesar el pago
     public boolean verificarCompra(){
+        if (cliente == null){return true;}
+
         System.out.println("Verificando venta...");
         mostrarVentaDetalles();
 

@@ -1,6 +1,5 @@
 package com.armeria.sistema.modelo.Ventas;
 
-
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -50,11 +49,12 @@ public class Cliente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int calcularEdad() {
-        return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
-    }
     public boolean isTieneLicencia() {
         return tieneLicencia;
+    }
+
+    public int calcularEdad() {
+        return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
     }
 
 }

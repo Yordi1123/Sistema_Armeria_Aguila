@@ -7,15 +7,23 @@ import java.util.Scanner;
 public class CarritoCompra {
     private Cliente cliente;
     private List<ItemVenta> itemVentaList;
+    private final double IGV = 0.18;
+
 
     public CarritoCompra(Cliente cliente) {
         this.cliente = cliente;
         this.itemVentaList = new ArrayList<>();
     }
 
+    //Metodos Getter y Setter
     public List<ItemVenta> getItemVentaList() {
         return itemVentaList;
     }
+
+    public double getIGV() {
+        return IGV;
+    }
+
 
     // Métodos para agregar, eliminar y vaciar el carrito de compra
     public void agregarItem(ItemVenta item) {
@@ -114,7 +122,7 @@ public class CarritoCompra {
         Controlador ventaMunicion = new ControladorMunicion();
         Controlador ventaAccesorio = new ControladorAccesorio();
 
-        // Configurar la cadena de responsabilidad
+        // Creando la cadena de responsabilidad
         ventaArma.setSiguiente(ventaMunicion);
         ventaMunicion.setSiguiente(ventaAccesorio);
 

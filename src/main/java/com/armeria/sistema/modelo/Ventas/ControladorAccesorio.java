@@ -16,9 +16,10 @@ public class ControladorAccesorio extends ControladorBase{
         return validarSiguiente(cliente, itemventa, itemVentaList);
     }
 
+    // Metodo que verifica que no se necesita licencia para accesorios
     @Override
     public boolean validarRegistro(Cliente cliente, ItemVenta itemventa, List<ItemVenta> itemVentaList) {
-        // Verifica que no se necesita licencia para comprar accesorios
+
         System.out.println("Cliente " + cliente.getNombre() + " " + cliente.getApellido() + " puede comprar accesorios sin licencia.");
         return true;
     }

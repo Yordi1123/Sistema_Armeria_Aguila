@@ -1,7 +1,6 @@
 package com.armeria.sistema.modelo.Ventas;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 // Clase que se extiende al modulo de registro de ventas
