@@ -1,4 +1,5 @@
 package com.armeria.sistema.modelo.Mediador;
 
-public class IMediador {
+public interface IMediador {
+    public void enviar(Mensaje mensaje, Servicio emisor);
 }
