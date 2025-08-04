@@ -116,7 +116,7 @@ public class Venta {
     // Registrar producto en el carrito de compras
     public void registrarProductos() {
         if (cliente == null){return;}
-        carrito.procesarProductos();
+        carrito.procesarProductos(); // Salida (conexion con carrito)
     }
 
 
@@ -160,17 +160,21 @@ public class Venta {
         System.out.println("Verificando venta...");
         mostrarVentaDetalles();
 
-        System.out.println("1. continuar con el pago");
-        System.out.println("2. modificar carrito");
-        System.out.println("3. cancelar venta");
+        System.out.println("1. Continuar con el pago");
+        System.out.println("2. Modificar carrito");
+        System.out.println("3. Cancelar venta");
         System.out.print("Seleccione una opción: ");
 
         int opcion = new Scanner(System.in).nextInt();
         switch (opcion) {
             case 1:
+
+                ///////////////////////////////////////////////
                 System.out.println("Continuando con el pago...");
-                registrarPago();
+                //registrarPago(); // Salida (conexion con modulo de pago)
                 break;
+                ///////////////////////////////////////////////
+
             case 2:
                 System.out.println("Modificando carrito...");
                 registrarProductos();
@@ -209,6 +213,10 @@ public class Venta {
         // Aquí podrías implementar la lógica para guardar la venta en una base de datos o archivo
         RegistroVentas.registrarVenta(comprobante);
         System.out.println("Venta guardada exitosamente.");
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
 }

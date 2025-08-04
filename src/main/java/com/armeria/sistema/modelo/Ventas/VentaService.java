@@ -1,5 +1,10 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.Mediador.Mediador;
+import com.armeria.sistema.modelo.Mediador.Mensaje;
+import com.armeria.sistema.modelo.Mediador.ServicioPago;
+import com.armeria.sistema.modelo.Mediador.ServicioVenta;
+
 public class VentaService {
 
     public static void main(String[] args) {
@@ -49,13 +54,43 @@ public class VentaService {
         Inventario.agregarProducto(producto19);
         Inventario.agregarProducto(producto20);
 
+        // Crear al objeto centralizador de la comunicacion
+        Mediador mediador = new Mediador();
+
         // Mostrar el inventario
         Inventario.mostrarInventario();
+
+        // Objetos que participan en la comunicacion
+        ServicioVenta servicioVenta = new ServicioVenta(mediador);
+        ServicioPago servicioPago = new ServicioPago(mediador);
+
+
+        // Agregarlos al objeto centralizador
+        mediador.agregarServicio(servicioVenta);
+        mediador.agregarServicio(servicioPago);
 
         Venta venta1 = new Venta();
         venta1.solicitarDatosCliente();
         venta1.registrarProductos();
         venta1.verificarCompra();
+
+        // Creando insumos para el mensaje a ServicioPago
+        Cliente cliente1 = venta1.getCliente();
+        double monto = venta1.calcularTotalVenta();
+        String solicitud = "Solicitando procesar pago";
+        Mensaje mensajeVenta = new Mensaje(cliente1,monto,solicitud);
+
+        // Enviar mensaje a Servicio Pago
+        servicioVenta.comunicar(mensajeVenta);
+
+
+        String respuesta = "Pago procesado";
+        servicioPago.comunicar(new Mensaje(true,respuesta));
+
+
+
+
+
 
         System.out.println("Inventario actualizado después de la venta:");
         Inventario.mostrarInventario();
