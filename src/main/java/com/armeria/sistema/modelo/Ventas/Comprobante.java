@@ -15,7 +15,7 @@ public class Comprobante {
     }
 
     public void generarComprobante() {
-        double subTotal = pago.getMonto() * (100/118);
+        double subTotal = carritoCompra.calcularSubTotal();
         double igv = pago.getMonto() - subTotal;
 
         System.out.println("""

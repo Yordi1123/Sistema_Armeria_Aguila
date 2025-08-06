@@ -123,4 +123,12 @@ public class CarritoCompra {
         return ventaArma;
     }
 
+    public double calcularSubTotal(){
+        double subtotal=0;
+        for (ItemVenta  item : itemVentaList){
+            subtotal +=item.calcularSubtotal();
+        }
+        return subtotal;
+    }
+
 }
