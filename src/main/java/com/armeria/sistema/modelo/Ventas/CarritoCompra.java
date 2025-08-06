@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class CarritoCompra {
     private Cliente cliente;
     private List<ItemVenta> itemVentaList;
-    private final double IGV = 0.18;
-
 
     public CarritoCompra(Cliente cliente) {
         this.cliente = cliente;
@@ -18,10 +16,6 @@ public class CarritoCompra {
     //Metodos Getter y Setter
     public List<ItemVenta> getItemVentaList() {
         return itemVentaList;
-    }
-
-    public double getIGV() {
-        return IGV;
     }
 
 

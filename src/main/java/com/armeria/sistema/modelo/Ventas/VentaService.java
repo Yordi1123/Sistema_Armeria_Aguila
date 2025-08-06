@@ -1,14 +1,39 @@
 package com.armeria.sistema.modelo.Ventas;
 
-import com.armeria.sistema.modelo.Mediador.Mediador;
-import com.armeria.sistema.modelo.Mediador.Mensaje;
-import com.armeria.sistema.modelo.Mediador.ServicioPago;
-import com.armeria.sistema.modelo.Mediador.ServicioVenta;
+import com.armeria.sistema.modelo.Mediador.*;
+import com.armeria.sistema.modelo.Pago.Pago;
 
-public class VentaService {
+public class VentaService  extends Servicio {
+    Venta venta;
+    public VentaService (IMediador mediador){
+        this.setMediador(mediador);
+    }
+
 
     public static void main(String[] args) {
 
+        System.out.println("Inventario actualizado después de la venta:");
+        Inventario.mostrarInventario();
+
+
+    }
+
+    @Override
+    public void recibir(Mensaje mensaje) {
+        System.out.println(mensaje.getDescripcion());
+        Pago pago = mensaje.getPago();
+        venta.registrarPago(pago);
+    }
+
+    public void iniciarProcesoVenta(){
+        venta = new Venta();
+        venta.solicitarDatosCliente();
+        venta.registrarProductos();
+        venta.verificarCompra();
+
+        solicitarPago(venta);
+    }
+    public void cargarInventario(){
         // Crear producto
         Producto producto1 = new Producto("Pistola Glock 17", TipoProducto.ARMA, 500.0, 10, "ABC123XYZ");
         Producto producto2 = new Producto("Municion 9mm", TipoProducto.MUNICION, 20.0, 1000);
@@ -53,49 +78,16 @@ public class VentaService {
         Inventario.agregarProducto(producto18);
         Inventario.agregarProducto(producto19);
         Inventario.agregarProducto(producto20);
-
-        // Crear al objeto centralizador de la comunicacion
-        Mediador mediador = new Mediador();
-
-        // Mostrar el inventario
-        Inventario.mostrarInventario();
-
-        // Objetos que participan en la comunicacion
-        ServicioVenta servicioVenta = new ServicioVenta(mediador);
-        ServicioPago servicioPago = new ServicioPago(mediador);
-
-
-        // Agregarlos al objeto centralizador
-        mediador.agregarServicio(servicioVenta);
-        mediador.agregarServicio(servicioPago);
-
-        Venta venta1 = new Venta();
-        venta1.solicitarDatosCliente();
-        venta1.registrarProductos();
-        venta1.verificarCompra();
-
-        // Creando insumos para el mensaje a ServicioPago
-        Cliente cliente1 = venta1.getCliente();
-        double monto = venta1.calcularTotalVenta();
-        String solicitud = "Solicitando procesar pago";
-        Mensaje mensajeVenta = new Mensaje(cliente1,monto,solicitud);
-
-        // Enviar mensaje a Servicio Pago
-        servicioVenta.comunicar(mensajeVenta);
-
-
-        String respuesta = "Pago procesado";
-        servicioPago.comunicar(new Mensaje(true,respuesta));
-
-
-
-
-
-
-        System.out.println("Inventario actualizado después de la venta:");
-        Inventario.mostrarInventario();
-
-
     }
 
+    public void solicitarPago(Venta venta){
+
+        Cliente cliente = venta.getCliente();
+        double monto = venta.getTotalConIgv();
+        String descrip = "Solicitando procesar pago";
+
+        Mensaje mensaje = new Mensaje (cliente, monto, descrip);
+
+        comunicar(mensaje);
+    }
 }

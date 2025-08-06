@@ -1,5 +1,7 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.Pago.Pago;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -13,34 +15,47 @@ public class Comprobante {
     }
 
     public void generarComprobante() {
-        System.out.println("\n\n===================== COMPROBANTE DE PAGO =====================");
-        System.out.println("                    Armería El Águila S.R.L");
-        System.out.println("                      RUC: 20445412628");
-        System.out.println("---------------------------------------------------------------");
-        System.out.println("Cliente: " + pago.getCliente().getNombre() + " " + pago.getCliente().getApellido());
-        System.out.println("Fecha: " + pago.getFechaPago().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        System.out.println("---------------------------------------------------------------");
-        System.out.printf("%-25s %8s %12s %12s%n", "Producto", "Cant.", "P. Unit (S/.)", "Subtotal");
-        System.out.println("---------------------------------------------------------------");
+        double subTotal = pago.getMonto() * (100/118);
+        double igv = pago.getMonto() - subTotal;
+
+        System.out.println("""
+                ╔══════════════════════════════════════════════════════════════╗
+                ║                  COMPROBANTE DE PAGO                         ║
+                ╚══════════════════════════════════════════════════════════════╝
+                                    Armería El Águila S.R.L
+                                      RUC: 20445412628
+                ───────────────────────────────────────────────────────────────
+                """);
+
+        System.out.printf("Cliente        : %s %s%n", pago.getCliente().getNombre(), pago.getCliente().getApellido());
+        System.out.printf("Licencia       : %s%n", pago.getCliente().isTieneLicencia() ? pago.getCliente().getTipoLicencia() : "No tiene");
+        System.out.printf("Fecha          : %s%n",
+                pago.getFechaPago().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        System.out.println("""
+                ───────────────────────────────────────────────────────────────
+                Producto                  Cant.   P. Unit (S/.)     Subtotal
+                ───────────────────────────────────────────────────────────────""");
 
         double total = 0.0;
         for (ItemVenta item : carritoCompra.getItemVentaList()) {
-            String nombre = item.getProducto().getNombre();
-            int cantidad = item.getCantidad();
-            double precioUnitario = item.getProducto().getPrecioUnitario();
-            double subtotal = cantidad * precioUnitario;
+            double subtotal = item.getCantidad() * item.getProducto().getPrecioUnitario();
             total += subtotal;
-
-            System.out.printf(Locale.US, "%-25s %8d %12.2f %12.2f%n", nombre, cantidad, precioUnitario, subtotal);
+            System.out.printf(Locale.US, "%-25s %6d     %10.2f     %10.2f%n",
+                    item.getProducto().getNombre(),
+                    item.getCantidad(),
+                    item.getProducto().getPrecioUnitario(),
+                    subtotal);
         }
 
-        System.out.println("---------------------------------------------------------------");
-        System.out.printf("%-47s %12s%n", "IGV (0.18):", total*carritoCompra.getIGV());
-        System.out.printf(Locale.US, "%-47s %12.2f%n", "TOTAL A PAGAR (S/.):", total*(1+ carritoCompra.getIGV()));
-        System.out.printf("%-47s %12s%n", "Método de Pago:", pago.getMetodoPago());
-        System.out.println("===============================================================\n\n");
-
+        System.out.println("───────────────────────────────────────────────────────────────");
+        System.out.printf(Locale.US, "%-48s S/ %10.2f%n", "Subtotal:", subTotal);
+        System.out.printf(Locale.US, "%-48s S/ %10.2f%n", "IGV (18%):", igv);
+        System.out.printf(Locale.US, "%-48s S/ %10.2f%n", "TOTAL PAGADO:", pago.getMonto());
+        System.out.printf(Locale.US, "%-40s %21s%n", "Método de Pago:", pago.getMetodoPago());
+        System.out.println("═══════════════════════════════════════════════════════════════\n");
     }
+
 
     // Métodos Getter y Setter
     public Pago getPago() {

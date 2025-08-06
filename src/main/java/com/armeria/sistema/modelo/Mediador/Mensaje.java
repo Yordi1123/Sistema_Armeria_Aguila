@@ -1,12 +1,16 @@
 package com.armeria.sistema.modelo.Mediador;
 
+import com.armeria.sistema.modelo.Pago.Pago;
 import com.armeria.sistema.modelo.Ventas.Cliente;
 
 public class Mensaje {
     private Cliente cliente;
     private double monto;
     private String descripcion;
-    private boolean validacion;
+    private Pago pago;
+
+    public Mensaje() {
+    }
 
     public Mensaje(Cliente cliente, double monto, String descripcion) {
         this.cliente = cliente;
@@ -14,17 +18,13 @@ public class Mensaje {
         this.descripcion = descripcion;
     }
 
-    public Mensaje(boolean validacion, String descripcion) {
-        this.validacion = validacion;
+    public Mensaje(Pago pago, String descripcion) {
+        this.pago= pago;
         this.descripcion = descripcion;
     }
 
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public double getMonto() {
@@ -39,7 +39,7 @@ public class Mensaje {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public Pago getPago() {
+        return pago;
     }
 }

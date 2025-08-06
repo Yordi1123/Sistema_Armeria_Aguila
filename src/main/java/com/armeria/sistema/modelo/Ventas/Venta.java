@@ -1,5 +1,7 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.Pago.Pago;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
@@ -8,8 +10,9 @@ import java.util.Scanner;
 public class Venta {
     private Cliente cliente;
     private CarritoCompra carrito;
-    private Pago pago;
     private Comprobante comprobante;
+    private final double IGV = 0.18; // Se puede ajustar este valor según la necesidad
+    private double totalConIgv;
 
 
     public Venta() {
@@ -130,28 +133,38 @@ public class Venta {
     }
 
     public void mostrarVentaDetalles() {
-        System.out.println("\n=====================================");
-        System.out.println("         DETALLES DE LA VENTA        ");
-        System.out.println("=====================================");
-        System.out.printf("Cliente        : %s %s%n", cliente.getNombre(), cliente.getApellido());
-        System.out.printf("DNI            : %s%n", cliente.getDni());
-        System.out.printf("Licencia : %s%n", cliente.isTieneLicencia() ? cliente.getTipoLicencia() : "no tiene");
-        System.out.println("-------------------------------------");
+        double subtotal = calcularTotalVenta();
+        double igvCalculado = subtotal * IGV;
+        this.totalConIgv = subtotal + igvCalculado;
+
+        System.out.println("\n╔══════════════════════════════════════════════════╗");
+        System.out.println("║             DETALLES DE LA VENTA                 ║");
+        System.out.println("╚══════════════════════════════════════════════════╝");
+
+        System.out.printf("Cliente         : %s %s%n", cliente.getNombre(), cliente.getApellido());
+        System.out.printf("DNI             : %s%n", cliente.getDni());
+        System.out.printf("Licencia        : %s%n", cliente.isTieneLicencia() ? cliente.getTipoLicencia() : "No tiene");
+
+        System.out.println("\n════════════════════════════════════════════════════");
         System.out.println("Productos en el carrito:");
-        System.out.println("-------------------------------------");
-        System.out.printf("%-20s %-10s %-10s%n", "Producto", "Cantidad", "Subtotal");
+        System.out.println("────────────────────────────────────────────────────");
+        System.out.printf("| %-20s | %-8s | %-11s |%n", "Producto", "Cantidad", "Subtotal");
+        System.out.println("────────────────────────────────────────────────────");
 
         for (ItemVenta item : carrito.getItemVentaList()) {
-            System.out.printf("%-20s %-10d S/ %-10.2f%n",
+            System.out.printf("| %-20s | %-8d | S/ %-8.2f |%n",
                     item.getProducto().getNombre(),
                     item.getCantidad(),
                     item.calcularSubtotal());
         }
 
-        System.out.println("-------------------------------------");
-        System.out.printf("TOTAL DE LA VENTA:       S/ %.2f%n", calcularTotalVenta());
-        System.out.println("=====================================\n");
+        System.out.println("────────────────────────────────────────────────────");
+        System.out.printf("| %-31s | S/ %-8.2f |%n", "SUBTOTAL", subtotal);
+        System.out.printf("| %-31s | S/ %-8.2f |%n", "IGV (18%)", igvCalculado);
+        System.out.printf("| %-31s | S/ %-8.2f |%n", "TOTAL CON IGV", totalConIgv);
+        System.out.println("════════════════════════════════════════════════════\n");
     }
+
 
     // Verificar la compra antes de procesar el pago
     public boolean verificarCompra(){
@@ -191,9 +204,9 @@ public class Venta {
     }
 
     // Procesar el pago del cliente
-    public void registrarPago() {
-        this.pago = new Pago(cliente, calcularTotalVenta());
-        if (!pago.procesarPago()) {
+    public void registrarPago(Pago pago) {
+
+        if (!pago.isValido()) {
             System.out.println("No se realizo el pago.");
             return;
         }
@@ -219,4 +232,7 @@ public class Venta {
         return cliente;
     }
 
+    public double getTotalConIgv() {
+        return totalConIgv;
+    }
 }

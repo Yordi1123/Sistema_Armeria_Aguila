@@ -11,11 +11,9 @@ public class ItemVenta {
         this.cantidad = cantidad;
     }
 
-
     public double calcularSubtotal() {
         return producto.getPrecioUnitario() * cantidad;
     }
-
 
     // Metodos Getter y Setter
     public Producto getProducto() {
