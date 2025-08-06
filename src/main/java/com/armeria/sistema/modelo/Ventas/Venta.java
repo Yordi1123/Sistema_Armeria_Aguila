@@ -185,7 +185,8 @@ public class Venta {
                 ///////////////////////////////////////////////
                 System.out.println("Continuando con el pago...");
                 //registrarPago(); // Salida (conexion con modulo de pago)
-                break;
+                return true; // Continuar con el pago
+                //break;
                 ///////////////////////////////////////////////
 
             case 2:
@@ -200,7 +201,7 @@ public class Venta {
                 return verificarCompra(); // Volver a verificar la compra
         }
         // Si se llega aquí, significa que la compra es válida
-        return true;
+        //return true;
     }
 
     // Procesar el pago del cliente

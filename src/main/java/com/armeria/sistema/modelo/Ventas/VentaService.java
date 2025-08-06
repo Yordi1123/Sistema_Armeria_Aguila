@@ -29,9 +29,8 @@ public class VentaService  extends Servicio {
         venta = new Venta();
         venta.solicitarDatosCliente();
         venta.registrarProductos();
-        venta.verificarCompra();
-
-        solicitarPago(venta);
+        if(venta.verificarCompra()== true)
+            solicitarPago(venta);
     }
     public void cargarInventario(){
         // Crear producto

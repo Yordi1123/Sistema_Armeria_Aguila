@@ -9,6 +9,7 @@ public class Cliente {
     private String apellido;
     private LocalDate fechaNacimiento;
     private boolean tieneLicencia;
+    private String direccion; 
     private TipoLicencia tipoLicencia;
 
 
@@ -57,4 +58,7 @@ public class Cliente {
         return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
 }
