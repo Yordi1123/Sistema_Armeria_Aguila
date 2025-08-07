@@ -2,10 +2,6 @@ package com.armeria.sistema.modelo.Ventas;
 
 import com.armeria.sistema.modelo.Mediador.*;
 import com.armeria.sistema.modelo.Pago.Pago;
-import com.armeria.sistema.modelo.gestorInventario.GestorProducto;
-import com.armeria.sistema.modelo.gestorInventario.ProductoArma;
-import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
-import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 
 public class VentaService  extends Servicio {
     Venta venta;
@@ -13,18 +9,9 @@ public class VentaService  extends Servicio {
         this.setMediador(mediador);
     }
 
-
-    public static void main(String[] args) {
-
-        System.out.println("Inventario actualizado después de la venta:");
-        Inventario.mostrarInventario();
-
-
-    }
-
     @Override
     public void recibir(Mensaje mensaje) {
-        System.out.println(mensaje.getDescripcion());
+        System.out.println("VentaService recibió el mensaje: " + mensaje.getDescripcion());
         Pago pago = mensaje.getPago();
         venta.registrarPago(pago);
     }
@@ -33,20 +20,10 @@ public class VentaService  extends Servicio {
         venta = new Venta();
         venta.solicitarDatosCliente();
         venta.registrarProductos();
-        if(venta.verificarCompra()== true)
+        if(venta.verificarCompra()== true){
             solicitarPago(venta);
-    }
-    public void cargarInventario(){
-        // Crear producto
-
-        ProductoArmeria arma = new ProductoArma("A001", "PistolaGlock 17", TipoProducto.ARMA,
-                0.9, "2800", "Glock", 10, "9mm",15.5,
-                10, "no", "Austria", "2 kg");
-
-        // Agregar productos al inventario
-        Inventario.agregarProducto(arma);
-        GestorProducto.registrarProducto(arma);
-
+            solicitarActualizarInventario(venta.getCarrito());
+        }
     }
 
     public void solicitarPago(Venta venta){
@@ -57,6 +34,12 @@ public class VentaService  extends Servicio {
 
         Mensaje mensaje = new Mensaje (cliente, monto, descrip);
 
+        comunicar(mensaje);
+    }
+
+
+    public void solicitarActualizarInventario(CarritoCompra carrito) {
+        Mensaje mensaje = new Mensaje(carrito, "Solicitando actualizar inventario");
         comunicar(mensaje);
     }
 }

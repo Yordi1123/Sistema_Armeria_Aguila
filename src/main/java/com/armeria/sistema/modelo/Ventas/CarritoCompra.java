@@ -1,5 +1,6 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.gestorInventario.GestorProducto;
 import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
 
 import java.util.ArrayList;
@@ -51,7 +52,9 @@ public class CarritoCompra {
             int cantidad = solicitarCantidad(scanner);
             if (cantidad <= 0) continue;
 
-            if (!Inventario.verificarDisponibilidad(producto.getNombre(), cantidad)) {
+
+            // Comunica con el inventario para verificar disponibilidad
+            if (!GestorProducto.esDisponible(producto.getCodProducto(), cantidad)) {
                 System.out.println("No se puede agregar el producto al carrito.");
                 continue;
             }
@@ -75,18 +78,18 @@ public class CarritoCompra {
 // ------------------------- MÉTODOS AUXILIARES -------------------------
 
     private ProductoArmeria solicitarProducto(Scanner scanner) {
-        System.out.print("Ingrese el nombre del producto: ");
-        String nombre = scanner.nextLine().trim();
+        System.out.print("Ingrese el codigo del producto: ");
+        String codigo = scanner.nextLine().trim();
 
-        if (nombre.isEmpty()) {
-            System.out.println("El nombre del producto no puede estar vacío.");
+        if (codigo.isEmpty()) {
+            System.out.println("El codigo del producto no puede estar vacío.");
             return null;
         }
 
-        ProductoArmeria producto = Inventario.buscarProductoPorNombre(nombre);///que reciba codigo
+        ProductoArmeria producto = GestorProducto.buscarPorCodigo(codigo);///que reciba codigo
 
         if (producto == null) {
-            System.out.println("El producto '" + nombre + "' no fue encontrado en el inventario.");
+            System.out.println("El producto '" + codigo + "' no fue encontrado en el inventario.");
         }
 
         return producto;

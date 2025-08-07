@@ -14,7 +14,6 @@ public class Venta {
     private final double IGV = 0.18; // Se puede ajustar este valor según la necesidad
     private double totalConIgv;
 
-
     public Venta() {
     }
 
@@ -168,11 +167,8 @@ public class Venta {
 
     // Verificar la compra antes de procesar el pago
     public boolean verificarCompra(){
-        if (cliente == null){return true;}
-
         System.out.println("Verificando venta...");
         mostrarVentaDetalles();
-
         System.out.println("1. Continuar con el pago");
         System.out.println("2. Modificar carrito");
         System.out.println("3. Cancelar venta");
@@ -180,54 +176,29 @@ public class Venta {
 
         int opcion = new Scanner(System.in).nextInt();
         switch (opcion) {
-            case 1:
-
-                ///////////////////////////////////////////////
-                System.out.println("Continuando con el pago...");
-                //registrarPago(); // Salida (conexion con modulo de pago)
+            case 1: System.out.println("Continuando con el pago...");
                 return true; // Continuar con el pago
-                //break;
-                ///////////////////////////////////////////////
-
-            case 2:
-                System.out.println("Modificando carrito...");
+            case 2: System.out.println("Modificando carrito...");
                 registrarProductos();
                 return verificarCompra(); // Volver a verificar la compra
-            case 3:
-                System.out.println("Venta cancelada.");
+            case 3: System.out.println("Venta cancelada.");
                 return false;
-            default:
-                System.out.println("Opción inválida. Intente nuevamente.");
+            default: System.out.println("Opción inválida. Intente nuevamente.");
                 return verificarCompra(); // Volver a verificar la compra
         }
-        // Si se llega aquí, significa que la compra es válida
-        //return true;
     }
 
     // Procesar el pago del cliente
     public void registrarPago(Pago pago) {
-
         if (!pago.isValido()) {
             System.out.println("No se realizo el pago.");
             return;
         }
-        actualizarInventario();
+        System.out.println("Venta procesada exitosamente. Gracias por su compra, " + cliente.getNombre() + ".");
         this.comprobante = new Comprobante(pago, carrito);
         comprobante.generarComprobante();
-        guardarVenta(comprobante);
     }
 
-    // Actualizar el inventario después de procesar la venta
-    public void actualizarInventario() {
-        Inventario.actualizarStockGeneral(carrito);
-        System.out.println("Venta procesada exitosamente. Gracias por su compra, " + cliente.getNombre() + ".");
-    }
-
-    public void guardarVenta(Comprobante comprobante) {
-        // Aquí podrías implementar la lógica para guardar la venta en una base de datos o archivo
-        RegistroVentas.registrarVenta(comprobante);
-        System.out.println("Venta guardada exitosamente.");
-    }
 
     public Cliente getCliente() {
         return cliente;
@@ -235,5 +206,9 @@ public class Venta {
 
     public double getTotalConIgv() {
         return totalConIgv;
+    }
+
+    public CarritoCompra getCarrito() {
+        return carrito;
     }
 }

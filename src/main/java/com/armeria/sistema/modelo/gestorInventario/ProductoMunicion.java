@@ -36,4 +36,8 @@ public class ProductoMunicion extends ProductoArmeria {
             }
         }
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
 }

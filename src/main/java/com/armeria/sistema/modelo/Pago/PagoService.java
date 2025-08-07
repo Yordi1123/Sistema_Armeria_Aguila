@@ -69,9 +69,11 @@ public class PagoService extends Servicio {
 
     @Override
     public void recibir(Mensaje mensaje) {
-        System.out.println(mensaje.getDescripcion()+"\n");
+        if (mensaje == null || mensaje.getCliente() == null || mensaje.getMonto() <= 0) {
+            return;
+        }
+        System.out.println("PagoService recibió el mensaje: " + mensaje.getDescripcion());
         procesarPago(mensaje);
-
     }
 
     public void procesarPago(Mensaje mensaje) {

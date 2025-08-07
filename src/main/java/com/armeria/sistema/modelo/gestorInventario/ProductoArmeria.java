@@ -5,12 +5,10 @@ public abstract class ProductoArmeria {
     protected String codProducto;
     protected String nombre;
     protected TipoProducto tipo;
-    //protected String peso;
     protected double precioUnit;
     protected String marca;
     protected String modelo;
-    protected int stock; //Agregando el stock del producto
-    //protected String paisOrigen;
+    protected int stock;
 
     public ProductoArmeria(String codProducto, String nombre,
             TipoProducto tipo, double precioUnit, String marca, String modelo, int stock) {
@@ -28,16 +26,8 @@ public abstract class ProductoArmeria {
         return codProducto;
     }
 
-    public void setCodProducto(String codProducto) {
-        this.codProducto = codProducto;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public TipoProducto getTipo() {
@@ -52,16 +42,8 @@ public abstract class ProductoArmeria {
         return precioUnit;
     }
 
-    public void setPrecioUnit(double precioUnit) {
-        this.precioUnit = precioUnit;
-    }
-
     public String getMarca() {
         return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public String getModelo() {

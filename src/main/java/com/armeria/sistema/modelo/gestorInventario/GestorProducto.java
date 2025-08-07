@@ -19,15 +19,29 @@ public abstract class GestorProducto {
     public static void registrarProducto (ProductoArmeria producto) {
         if (producto != null ) {
             PRODUCTO_ARMERIA_LIST. add (producto);
-            System. out . println ("Producto registrado: " + producto. nombre + " (" + producto. tipo + ")");
         }
     }
-    public abstract void buscarPorCodigo(String codProducto);
+    public static ProductoArmeria buscarPorCodigo(String codProducto){
+        if (codProducto== null || codProducto.trim().isEmpty()) {
+            System.out.println("Nombre de producto inválido.");
+            return null;
+        }
+
+        String codigoNormalizado = codProducto.trim().toLowerCase();
+
+        for (ProductoArmeria prod : PRODUCTO_ARMERIA_LIST) {
+            if (prod.getCodProducto() != null &&
+                    prod.getCodProducto().trim().toLowerCase().equals(codigoNormalizado)) {
+                return prod;
+            }
+        }
+
+        return null; // Producto no encontrado
+    }
 
     // Actualiza el stock de un producto específico
     public void actualizarStock(ProductoArmeria producto, int cantidadVendida){
         producto.setStock(producto.getStock() - cantidadVendida);
-        System.out.println("stock actualizado exitosamente");
     }
 
     // Actualiza el stock de todos los productos en el carrito de compra
@@ -37,11 +51,11 @@ public abstract class GestorProducto {
         for (ItemVenta item : carritoCompra.getItemVentaList()) {
             actualizarStock(item.getProducto(), item.getCantidad());
         }
-
+        System.out.println("stock actualizado exitosamente");
     }
 
     public abstract double calcularValorTotal ();
-    public abstract void mostrarInventario ();
+    public abstract void mostrarCatalogo();
 
     //Agregue le metodo para reducir el stock de un producto
     public void reducirStock (ProductoArmeria producto, int cantidad){
@@ -51,6 +65,44 @@ public abstract class GestorProducto {
                     System.out.println("Stock actualizado exitosamente");
                 }else System.out.println("Operacion fallida, producto inexistente o stock insuficiente");
             }
+    }
+
+    public static boolean esDisponible(String codProducto, int cantidad) {
+        // Validar nombre del producto
+        if (codProducto == null || codProducto.trim().isEmpty()) {
+            System.out.println("Error: El codigo del producto es inválido.");
+            return false;
+        }
+
+        // Validar cantidad solicitada
+        if (cantidad <= 0) {
+            System.out.println("Error: La cantidad debe ser mayor que cero.");
+            return false;
+        }
+
+        // Normalizar el nombre del producto (sin espacios y en minúsculas)
+        String codNormalizado = codProducto.trim().toLowerCase();
+
+        // Buscar el producto
+        for (ProductoArmeria prod : PRODUCTO_ARMERIA_LIST) {
+            if (prod.getCodProducto()!= null &&
+                    prod.getCodProducto().trim().toLowerCase().equals(codNormalizado)) {
+
+                if (cantidad <= prod.getStock()) {
+                    System.out.println("Producto disponible: " + prod.getNombre() +
+                            " (Stock: " + prod.getStock() + ")");
+                    return true;
+                } else {
+                    System.out.println("Stock insuficiente para: " + prod.getNombre() +
+                            " (Stock disponible: " + prod.getStock() + ")");
+                    return false;
+                }
+            }
+        }
+
+        // Producto no encontrado
+        System.out.println("Producto no encontrado en el inventario: " + codProducto);
+        return false;
     }
 
 }

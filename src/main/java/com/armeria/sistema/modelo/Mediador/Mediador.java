@@ -17,7 +17,7 @@ public class Mediador implements IMediador {
     @Override
     public void enviar(Mensaje mensaje, Servicio emisor) {
         for (Servicio serv : servicios) {
-            if (serv != emisor) {
+            if (serv != emisor ) {
                 serv.recibir(mensaje);
             }
         }
