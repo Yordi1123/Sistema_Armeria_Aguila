@@ -39,12 +39,12 @@ public class Comprobante {
 
         double total = 0.0;
         for (ItemVenta item : carritoCompra.getItemVentaList()) {
-            double subtotal = item.getCantidad() * item.getProducto().getPrecioUnitario();
+            double subtotal = item.getCantidad() * item.getProducto().getPrecioUnit();
             total += subtotal;
             System.out.printf(Locale.US, "%-25s %6d     %10.2f     %10.2f%n",
                     item.getProducto().getNombre(),
                     item.getCantidad(),
-                    item.getProducto().getPrecioUnitario(),
+                    item.getProducto().getPrecioUnit(),
                     subtotal);
         }
 

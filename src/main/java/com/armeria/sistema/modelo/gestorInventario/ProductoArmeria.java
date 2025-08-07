@@ -5,26 +5,22 @@ public abstract class ProductoArmeria {
     protected String codProducto;
     protected String nombre;
     protected TipoProducto tipo;
-    protected String peso;
-    protected double precioVenta;
+    //protected String peso;
+    protected double precioUnit;
     protected String marca;
     protected String modelo;
     protected int stock; //Agregando el stock del producto
-    protected String paisOrigen;
+    //protected String paisOrigen;
 
     public ProductoArmeria(String codProducto, String nombre,
-            TipoProducto tipo, String peso,
-            double precioVenta, String marca, String modelo, int stock,
-            String paisOrigen) {
+            TipoProducto tipo, double precioUnit, String marca, String modelo, int stock) {
         this.codProducto = codProducto;
         this.nombre = nombre;
         this.tipo = tipo;
-        this.peso = peso;
-        this.precioVenta = precioVenta;
+        this.precioUnit = precioUnit;
         this.marca = marca;
         this.modelo = modelo;
         this.stock = stock;
-        this.paisOrigen = paisOrigen;
     }
 
     //Metodos Getter y Setters de la clase abstracta ProductoArmeria
@@ -52,20 +48,12 @@ public abstract class ProductoArmeria {
         this.tipo = tipo;
     }
 
-    public String getPeso() {
-        return peso;
+    public double getPrecioUnit() {
+        return precioUnit;
     }
 
-    public void setPeso(String peso) {
-        this.peso = peso;
-    }
-
-    public double getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public void setPrecioVenta(double precioVenta) {
-        this.precioVenta = precioVenta;
+    public void setPrecioUnit(double precioUnit) {
+        this.precioUnit = precioUnit;
     }
 
     public String getMarca() {
@@ -90,14 +78,6 @@ public abstract class ProductoArmeria {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public String getPaisOrigen() {
-        return paisOrigen;
-    }
-
-    public void setPaisOrigen(String paisOrigen) {
-        this.paisOrigen = paisOrigen;
     }
 
     //Metodo abstracto mostrar detalles para cada tipo de producto

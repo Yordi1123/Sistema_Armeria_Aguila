@@ -8,11 +8,11 @@ public class GestorMunicion extends GestorProducto {
 
     //Correcion de metodos por el tipo de producto adecuado
     @Override
-    public void buscarPorMarca(String marca) {
-        System.out.println("=== Buscando municiones de marca: " + marca + " ===");
+    public void buscarPorCodigo(String codProducto) {
+        System.out.println("=== Buscando municiones de marca: " + codProducto + " ===");
         boolean encontrada = false;
         for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            if (p instanceof ProductoMunicion municion && municion.getMarca().equalsIgnoreCase(marca)) {
+            if (p instanceof ProductoMunicion municion && municion.getMarca().equalsIgnoreCase(codProducto)) {
                 municion.mostrarDetalles();
                 System.out.println("\n------------------------------------------------------");
                 encontrada = true;
@@ -24,23 +24,10 @@ public class GestorMunicion extends GestorProducto {
     }
 
     @Override
-    public boolean eliminarPorNombre(String nombre) {
-        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            if (p.getNombre().equalsIgnoreCase(nombre)) {
-                GestorProducto.getProductoArmeriaList().remove(p);
-                System.out.println("Municion '" + nombre + "' eliminada del inventario.");
-                return true;
-            }
-        }
-        System.out.println("No se encontró el municion '" + nombre + "'para eliminar.");
-        return false;
-    }
-
-    @Override
     public double calcularValorTotal() {
         double total = 0;
         for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            total += p.precioVenta;
+            total += p.precioUnit;
         }
         return total;
     }

@@ -1,5 +1,6 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
 import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public abstract class ControladorBase implements Controlador {
     public abstract boolean validarRegistro(Cliente cliente, ItemVenta itemVenta, List<ItemVenta> itemVentaList);
 
     // Metodo para registrar un producto, verifica si el cliente puede comprarlo
-    public boolean esCompatibleConArmaRegistrada(Producto producto){
+    public boolean esCompatibleConArmaRegistrada(ProductoArmeria producto){
         System.out.println("Verificando compatibilidad del producto " + producto.getNombre() + " con armas registradas.");
         return false; // Por defecto, se asume que es compatible
     }
@@ -26,7 +27,7 @@ public abstract class ControladorBase implements Controlador {
         return false; // Por defecto, se asume que no excede el límite
     }
 
-    public int revisarAcumulado (Producto producto, List<ItemVenta> itemVentaList){
+    public int revisarAcumulado (ProductoArmeria producto, List<ItemVenta> itemVentaList){
         int acumulado = 0;
 
         for (ItemVenta item : itemVentaList) {

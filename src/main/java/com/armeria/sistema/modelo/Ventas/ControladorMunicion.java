@@ -1,5 +1,8 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
+import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -28,7 +31,7 @@ public class ControladorMunicion extends ControladorBase {
     @Override
     public boolean validarRegistro(Cliente cliente, ItemVenta itemventa, List<ItemVenta> listItemVenta) {
 
-        Producto producto = itemventa.getProducto();
+        ProductoArmeria producto = itemventa.getProducto();
 
         // 1. Verificar licencia vigente
         if (!cliente.isTieneLicencia()) {
@@ -53,7 +56,7 @@ public class ControladorMunicion extends ControladorBase {
     }
 
     @Override
-    public boolean esCompatibleConArmaRegistrada(Producto producto) {
+    public boolean esCompatibleConArmaRegistrada(ProductoArmeria producto) {
         System.out.println("solicitar compatibilidad técnica de la munición (" + producto.getNombre()+") con el arma registrada.");
         System.out.println("¿La municion es compatible con el tipo y calibre del arma registrada? (s/n)");
         String respuesta = new Scanner(System.in).nextLine().trim().toLowerCase();
@@ -91,7 +94,7 @@ public class ControladorMunicion extends ControladorBase {
         System.out.println("Cantidad solicitada: " + cantidadSolicitada);
 
         // Simulación de validación
-        Producto producto = itemVenta.getProducto();
+        ProductoArmeria producto = itemVenta.getProducto();
 
         if (cantidadSolicitada + revisarAcumulado(producto, itemVentaList)> limite) {
             System.out.println("La cantidad solicitada excede el límite permitido.");

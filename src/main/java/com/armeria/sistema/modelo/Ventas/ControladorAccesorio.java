@@ -1,5 +1,7 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
+
 import java.util.List;
 
 public class ControladorAccesorio extends ControladorBase{

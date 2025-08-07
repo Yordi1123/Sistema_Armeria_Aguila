@@ -1,12 +1,16 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.Mediador.Mensaje;
+import com.armeria.sistema.modelo.Mediador.Servicio;
+import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 // Clase que representa el inventario de productos disponibles para la venta (Se extiende al gestor de inventario)
 public class Inventario {
-    private static final List<Producto> PRODUCTO_LIST = new ArrayList<>();
+    private static final List<ProductoArmeria> PRODUCTO_LIST = new ArrayList<>();
 
     public Inventario() {
 
@@ -31,7 +35,7 @@ public class Inventario {
         String nombreNormalizado = nombreProducto.trim().toLowerCase();
 
         // Buscar el producto
-        for (Producto prod : PRODUCTO_LIST) {
+        for (ProductoArmeria prod : PRODUCTO_LIST) {
             if (prod.getNombre() != null &&
                     prod.getNombre().trim().toLowerCase().equals(nombreNormalizado)) {
 
@@ -53,7 +57,7 @@ public class Inventario {
     }
 
     // Actualiza el stock de un producto específico
-    public static void actualizarStock(Producto producto, int cantidadVendida) {
+    public static void actualizarStock(ProductoArmeria producto, int cantidadVendida) {
         producto.setStock(producto.getStock() - cantidadVendida);
         System.out.println("stock actualizado exitosamente");
 
@@ -68,7 +72,7 @@ public class Inventario {
     }
 
     // Busca un producto por su nombre en el inventario
-    public static Producto buscarProductoPorNombre(String nombre) {
+    public static ProductoArmeria buscarProductoPorNombre(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
             System.out.println("Nombre de producto inválido.");
             return null;
@@ -76,7 +80,7 @@ public class Inventario {
 
         String nombreNormalizado = nombre.trim().toLowerCase();
 
-        for (Producto prod : PRODUCTO_LIST) {
+        for (ProductoArmeria prod : PRODUCTO_LIST) {
             if (prod.getNombre() != null &&
                     prod.getNombre().trim().toLowerCase().equals(nombreNormalizado)) {
                 return prod;
@@ -87,7 +91,7 @@ public class Inventario {
     }
 
     // Agrega un producto al inventario
-    public static void agregarProducto(Producto producto) {
+    public static void agregarProducto(ProductoArmeria producto) {
         PRODUCTO_LIST.add(producto);
         //System.out.println("Producto agregado al inventario: " + producto.getNombre());
     }
@@ -100,16 +104,19 @@ public class Inventario {
 
         // Ordenar por nombre alfabéticamente
         PRODUCTO_LIST.stream()
-                .sorted(Comparator.comparing(Producto::getNombre))
+                .sorted(Comparator.comparing(ProductoArmeria::getNombre))
                 .forEach(prod -> System.out.printf(
                         "%-30s %-20s %-17s %-13s%n",
                         prod.getNombre(),
                         prod.getTipo(),
-                        prod.getPrecioUnitario(),
+                        prod.getPrecioUnit(),
                         prod.getStock()
                 ));
 
         System.out.println("============================================================================\n\n");
     }
+
+
+
 
 }

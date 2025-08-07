@@ -1,5 +1,7 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +45,7 @@ public class CarritoCompra {
         System.out.println("Procesar productos en el carrito de compra.");
 
         while (seguir) {
-            Producto producto = solicitarProducto(scanner);
+            ProductoArmeria producto = solicitarProducto(scanner);
             if (producto == null) continue;
 
             int cantidad = solicitarCantidad(scanner);
@@ -72,7 +74,7 @@ public class CarritoCompra {
 
 // ------------------------- MÉTODOS AUXILIARES -------------------------
 
-    private Producto solicitarProducto(Scanner scanner) {
+    private ProductoArmeria solicitarProducto(Scanner scanner) {
         System.out.print("Ingrese el nombre del producto: ");
         String nombre = scanner.nextLine().trim();
 
@@ -81,7 +83,7 @@ public class CarritoCompra {
             return null;
         }
 
-        Producto producto = Inventario.buscarProductoPorNombre(nombre);
+        ProductoArmeria producto = Inventario.buscarProductoPorNombre(nombre);///que reciba codigo
 
         if (producto == null) {
             System.out.println("El producto '" + nombre + "' no fue encontrado en el inventario.");
@@ -130,5 +132,6 @@ public class CarritoCompra {
         }
         return subtotal;
     }
+
 
 }

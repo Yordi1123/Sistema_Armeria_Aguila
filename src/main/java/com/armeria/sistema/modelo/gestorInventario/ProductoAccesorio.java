@@ -5,21 +5,19 @@ public class ProductoAccesorio extends ProductoArmeria {
     private String funcion;
 
     public ProductoAccesorio(String codProducto, String nombre,
-            TipoProducto tipo, String peso,
-            double precioVenta, String marca, String modelo, int stock,
-            String paisOrigen, String funcion) {
-        super(codProducto, nombre, tipo, peso, precioVenta,
-                marca, modelo, stock, paisOrigen);
+            TipoProducto tipo,
+            double precioUnit, String marca, String modelo, int stock, String funcion) {
+        super(codProducto, nombre, tipo, precioUnit,
+                marca, modelo, stock);
         this.funcion = funcion;
     }
 
     @Override
     public void mostrarDetalles() {
         System. out . println (" ACCESORIO: " + nombre);
-        System. out . println (" Código: " + codProducto + " | Tipo: " + tipo + " | Peso: " + peso + " kg");
+        System. out . println (" Código: " + codProducto + " | Tipo: " + tipo + " |");
         System. out . println (" Marca: " + marca + " | Modelo: " + modelo + " | Función: " + funcion);
-        System. out . println (" Origen: " + paisOrigen + " | Precio: S/ " + precioVenta);
-        System.out.println("stock disponible: " + stock);
+        System. out . println (" Precio: S/ " + precioUnit + " | stock disponible: " + stock);
     }
 
     @Override

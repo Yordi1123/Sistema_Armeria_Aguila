@@ -7,11 +7,11 @@ public class GestorArma extends GestorProducto {
     }
 
     @Override
-    public void buscarPorMarca(String marca) {
-        System.out.println("=== Buscando armas de marca: " + marca + " ===");
+    public void buscarPorCodigo(String codProducto) {
+        System.out.println("=== Buscando armas de marca: " + codProducto + " ===");
         boolean encontrada = false;
         for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            if (p instanceof ProductoArma arma && arma.getMarca().equalsIgnoreCase(marca)) {
+            if (p instanceof ProductoArma arma && arma.getMarca().equalsIgnoreCase(codProducto)) {
                 arma.mostrarDetalles();
                 System.out.println("\n------------------------------------------------------");
                 encontrada = true;
@@ -23,26 +23,12 @@ public class GestorArma extends GestorProducto {
     }
 
     @Override
-    public boolean eliminarPorNombre(String nombre) {
-        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-            //Comprobar si el producto es de tipo arma y luego hacer la comparcion
-            if (p instanceof ProductoArma arma && arma.getNombre().equalsIgnoreCase(nombre)) {
-                GestorProducto.getProductoArmeriaList().remove(arma);
-                System.out.println("Arma '" + nombre + "' eliminada del inventario.");
-                return true;
-            }
-        }
-        System.out.println("No se encontró el arma '" + nombre + "' para eliminar.");
-        return false;
-    }
-
-    @Override
     public double calcularValorTotal() {
         double total = 0;
         for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
             //Comprobar que contabililce solo los productos de tipo arma
             if (p instanceof ProductoArma arma)
-                total += arma.getPrecioVenta();
+                total += arma.getPrecioUnit();
         }
         return total;
     }

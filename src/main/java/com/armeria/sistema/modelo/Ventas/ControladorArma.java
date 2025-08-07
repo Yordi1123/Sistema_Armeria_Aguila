@@ -1,5 +1,8 @@
 package com.armeria.sistema.modelo.Ventas;
 
+import com.armeria.sistema.modelo.gestorInventario.ProductoArmeria;
+import com.armeria.sistema.modelo.gestorInventario.TipoProducto;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -28,7 +31,7 @@ public class ControladorArma extends ControladorBase {
 
     @Override
     public boolean validarRegistro(Cliente cliente, ItemVenta itemventa, List<ItemVenta> listaItemVenta) {
-        Producto producto = itemventa.getProducto();
+        ProductoArmeria producto = itemventa.getProducto();
 
         // 1. Verificar licencia vigente
         if (!cliente.isTieneLicencia()) {
@@ -55,7 +58,7 @@ public class ControladorArma extends ControladorBase {
 
 
     @Override
-    public boolean esCompatibleConArmaRegistrada(Producto producto) {
+    public boolean esCompatibleConArmaRegistrada(ProductoArmeria producto) {
         System.out.println("Solicitando compatibilidad técnica del arma (" + producto.getNombre() + ") con el arma registrada.");
         System.out.println("¿El arma es compatible con el tipo y calibre del arma registrada? (s/n)");
         Scanner scanner = new Scanner(System.in);
@@ -77,7 +80,7 @@ public class ControladorArma extends ControladorBase {
 
         TipoLicencia tipoLicencia = cliente.getTipoLicencia();
         Integer limiteArmas = LIMITE_ARMAS.get(tipoLicencia);
-        Producto producto = itemventa.getProducto();
+        ProductoArmeria producto = itemventa.getProducto();
 
 
         System.out.printf("Comprando armas con licencia %s. Límite: %d arma(s) %n",
