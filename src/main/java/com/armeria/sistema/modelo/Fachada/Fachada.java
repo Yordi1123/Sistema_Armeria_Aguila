@@ -1,5 +1,4 @@
 package com.armeria.sistema.modelo.Fachada;
-
 import com.armeria.sistema.modelo.Pago.PagoService;
 import com.armeria.sistema.modelo.Ventas.VentaService;
 import com.armeria.sistema.modelo.gestorInventario.InventarioService;
@@ -17,7 +16,6 @@ public class Fachada {
         this.inventarioService = new InventarioService(mediador);
         this.ventaService = new VentaService(mediador);
         this.pagoService = new PagoService(mediador);
-
         // Registrar servicios en el mediador
         mediador.agregarServicio(ventaService);
         mediador.agregarServicio(pagoService);
@@ -27,13 +25,10 @@ public class Fachada {
     public void iniciarSistema() {
         inventarioService.cargarInventario();
     }
-
     public void mostrarInventario() {
         inventarioService.mostrarCatalogo();
     }
-
     public void iniciarProcesoVenta() {
         ventaService.iniciarProcesoVenta();
     }
-
 }
