@@ -4,7 +4,7 @@ import com.armeria.sistema.modelo.Pago.PagoService;
 import com.armeria.sistema.modelo.Ventas.VentaService;
 import com.armeria.sistema.modelo.gestorInventario.InventarioService;
 
-public class Usuario {
+public class Main {
 
     public static void main (String[] args){
 

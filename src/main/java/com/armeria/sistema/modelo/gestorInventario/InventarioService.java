@@ -80,21 +80,21 @@ public class InventarioService extends Servicio {
         gestorMunicion.registrarProducto(municion5);
     }
 
-    public void crearAccesorio(){
-        ProductoArmeria accesorio1 = new ProductoAccesorio("AC001", "Silenciador Glock", TipoProducto.ACCESORIO,
-                951.90, "APS", "SLN-G17", 20, "reduce el sonido del disparo");
+public void crearAccesorio() {
+    ProductoArmeria accesorio1 = new ProductoAccesorio("AC001", "Correa portafusil táctica", TipoProducto.ACCESORIO,
+            45.90, "TactiPro", "CRP-M4", 30, "correa ajustable para transporte seguro del arma");
 
-        ProductoArmeria accesorio2 = new ProductoAccesorio("AC002", "Mira telescópica AK-47", TipoProducto.ACCESORIO,
-                1140.00, "Tactical", "SCP-AK47", 15, "mejora la precisión a larga distancia");
+    ProductoArmeria accesorio2 = new ProductoAccesorio("AC002", "Linterna táctica LED", TipoProducto.ACCESORIO,
+            89.00, "LuxFire", "LT-X300", 20, "linterna de alta luminosidad con montura Picatinny");
 
-        ProductoArmeria accesorio3 = new ProductoAccesorio("AC003", "Culata Remington 870", TipoProducto.ACCESORIO,
-                572.85, "Custom", "STK-R870", 10, "mejora la ergonomía y el control del arma");
+    ProductoArmeria accesorio3 = new ProductoAccesorio("AC003", "Funda universal para pistola", TipoProducto.ACCESORIO,
+            35.85, "SafeGear", "FND-GEN", 40, "funda de nylon resistente para almacenamiento");
 
-        ProductoArmeria accesorio4 = new ProductoAccesorio("AC004", "Funda de transporte Uzi", TipoProducto.ACCESORIO,
-                304.00, "Tactical", "CSE-UZI", 25, "facilita el transporte y almacenamiento del arma");
+    ProductoArmeria accesorio4 = new ProductoAccesorio("AC004", "Protector de gatillo seguro", TipoProducto.ACCESORIO,
+            12.50, "TriggerSafe", "PTC-001", 50, "cubre el gatillo para evitar disparos accidentales");
 
-        ProductoArmeria accesorio5 = new ProductoAccesorio("AC005", "Bípode para Barrett M82", TipoProducto.ACCESORIO,
-                1900.00, "Precision", "BPD-M82", 5, "mejora la estabilidad al disparar a larga distancia");
+    ProductoArmeria accesorio5 = new ProductoAccesorio("AC005", "Bípode ajustable", TipoProducto.ACCESORIO,
+            75.00, "StableShot", "BPD-6IN", 15, "soporte regulable para mayor precisión en disparos");
 
         gestorAccesorio.registrarProducto(accesorio1);
         gestorAccesorio.registrarProducto(accesorio2);
