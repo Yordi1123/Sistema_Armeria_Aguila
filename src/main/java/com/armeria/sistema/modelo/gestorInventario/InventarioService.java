@@ -3,15 +3,20 @@ package com.armeria.sistema.modelo.gestorInventario;
 import com.armeria.sistema.modelo.Mediador.IMediador;
 import com.armeria.sistema.modelo.Mediador.Mensaje;
 import com.armeria.sistema.modelo.Mediador.Servicio;
-import com.armeria.sistema.modelo.Ventas.CarritoCompra;
 
 public class InventarioService extends Servicio {
-    private GestorArma gestorArmas;
-    private GestorMunicion gestorMunicion;
-    private GestorAccesorio gestorAccesorio;
+    private GestorProducto gestorArmas;
+    private GestorProducto gestorMunicion;
+    private GestorProducto gestorAccesorio;
 
     public InventarioService(IMediador mediador) {
         this.mediador = mediador;
+        this.gestorArmas = new GestorArma();
+        this.gestorMunicion = new GestorMunicion();
+        this.gestorAccesorio = new GestorAccesorio();
+    }
+
+    public InventarioService() {
         this.gestorArmas = new GestorArma();
         this.gestorMunicion = new GestorMunicion();
         this.gestorAccesorio = new GestorAccesorio();
@@ -109,7 +114,6 @@ public void crearAccesorio() {
             return;
         }
         System.out.println("InventarioService recibió el mensaje: " + mensaje.getDescripcion());
-        CarritoCompra carrito = mensaje.getCarrito();
-        gestorArmas.actualizarStockGeneral(carrito);
+        gestorArmas.actualizarStockGeneral(mensaje.getCarrito());
     }
 }

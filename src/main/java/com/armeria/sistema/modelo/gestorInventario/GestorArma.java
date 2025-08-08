@@ -8,22 +8,6 @@ public class GestorArma extends GestorProducto {
         super();
     }
 
-//    @Override
-//    public void buscarPorCodigo(String codProducto) {
-//        System.out.println("=== Buscando armas de marca: " + codProducto + " ===");
-//        boolean encontrada = false;
-//        for (ProductoArmeria p : GestorProducto.getProductoArmeriaList()) {
-//            if (p instanceof ProductoArma arma && arma.getMarca().equalsIgnoreCase(codProducto)) {
-//                arma.mostrarDetalles();
-//                System.out.println("\n------------------------------------------------------");
-//                encontrada = true;
-//            }
-//        }
-//        if (!encontrada) {
-//            System.out.println("No se encontraron armas de esa marca.");
-//        }
-//    }
-
     @Override
     public double calcularValorTotal() {
         double total = 0;
@@ -50,13 +34,13 @@ public class GestorArma extends GestorProducto {
                 "Cod", "Nombre", "Calibre", "Precio (S/.)", "Stock", "Marca");
         System.out.println(lineaSeparadora);
 
-        for (ProductoArmeria arma1 : GestorProducto.getProductoArmeriaList()) {; // Aseguramos que sea del tipo ProductoArma
+        for (ProductoArmeria arma1 : GestorProducto.getProductoArmeriaList()) {;
             if (arma1.getTipo() == TipoProducto.ARMA) {
-                ProductoArma arma = (ProductoArma) arma1; // Hacemos el cast a ProductoArma
+                ProductoArma arma = (ProductoArma) arma1;
                 System.out.printf(Locale.US, "║ %-5s ║ %-36.36s ║ %-10s ║ %12.2f ║ %8d ║ %-11s ║%n",
                         arma.getCodProducto(),
                         arma.getNombre(),
-                        arma.getCalibre(),    // Asumiendo getter getCalibre()
+                        arma.getCalibre(),
                         arma.getPrecioUnit(),
                         arma.getStock(),
                         arma.getMarca());

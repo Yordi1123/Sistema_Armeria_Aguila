@@ -17,6 +17,8 @@ public class PagoService extends Servicio {
         this.setMediador(mediador);
     }
 
+    public PagoService() {}
+
     public void pagar(Pago pago) {
         if (pago != null) {
             metodo.procesarPago(pago);

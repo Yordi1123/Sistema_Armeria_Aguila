@@ -62,10 +62,8 @@ public abstract class ProductoArmeria {
         this.stock = stock;
     }
 
-    //Metodo abstracto mostrar detalles para cada tipo de producto
     public abstract void mostrarDetalles();
 
-    //Metodo para mostrar catologo de armas
     public abstract void mostrarCatalogo();
 
 

@@ -48,7 +48,6 @@ public class Mensaje {
         return pago;
     }
 
-    //por si acaso se necesita
     public CarritoCompra getCarrito() {
         return carrito;
     }

@@ -25,17 +25,6 @@ public class ProductoArma extends ProductoArmeria {
         return calibre;
     }
 
-    public double getLongitudCanon() {
-        return longitudCanon;
-    }
-
-    public int getCapacidadCargador() {
-        return capacidadCargador;
-    }
-
-    public String getSeguro() {
-        return seguro;
-    }
 
     @Override
     public void mostrarDetalles() {

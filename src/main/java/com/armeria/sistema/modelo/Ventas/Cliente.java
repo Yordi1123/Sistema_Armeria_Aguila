@@ -54,11 +54,4 @@ public class Cliente {
         return tieneLicencia;
     }
 
-    public int calcularEdad() {
-        return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
 }

@@ -1,7 +1,5 @@
 package com.armeria.sistema.modelo.Ventas;
-
 import com.armeria.sistema.modelo.Mediador.*;
-import com.armeria.sistema.modelo.Pago.Pago;
 
 public class VentaService  extends Servicio {
     Venta venta;
@@ -9,11 +7,13 @@ public class VentaService  extends Servicio {
         this.setMediador(mediador);
     }
 
+    public VentaService() {
+    }
+
     @Override
     public void recibir(Mensaje mensaje) {
         System.out.println("VentaService recibió el mensaje: " + mensaje.getDescripcion());
-        Pago pago = mensaje.getPago();
-        venta.registrarPago(pago);
+        venta.registrarPago(mensaje.getPago());
     }
 
     public void iniciarProcesoVenta(){
