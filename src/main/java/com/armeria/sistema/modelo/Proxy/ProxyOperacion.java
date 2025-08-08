@@ -1,6 +1,7 @@
 package com.armeria.sistema.modelo.Proxy;
 
 import java.util.Scanner;
+import com.armeria.sistema.modelo.Fachada.Fachada;
 
 public class ProxyOperacion implements Operacion {
     private OperacionReal operacionReal;
@@ -13,10 +14,11 @@ public class ProxyOperacion implements Operacion {
     public void ejecutar() {
         if (!autenticado) {
             if (autenticar()) {
-                operacionReal = new OperacionReal();
+                Fachada fachada = new Fachada(); // Creamos la fachada
+                operacionReal = new OperacionReal(fachada); // Pasamos la fachada
                 operacionReal.ejecutar();
             } else {
-                System.out.println("❌ Autenticación fallida. Acceso denegado.");
+                System.out.println("Autenticación fallida. Acceso denegado.");
             }
         } else {
             operacionReal.ejecutar();
@@ -33,7 +35,7 @@ public class ProxyOperacion implements Operacion {
 
         if (usuario.equals(usuarioCorrecto) && password.equals(passwordCorrecto)) {
             autenticado = true;
-            System.out.println("✅ Autenticación exitosa.");
+            System.out.println("Autenticación exitosa...");
             return true;
         }
         return false;
