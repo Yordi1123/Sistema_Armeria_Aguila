@@ -1,6 +1,6 @@
 # Sistema de Información para Armería 🛡️
 
-Este proyecto es un sistema de escritorio desarrollado en Java con JavaFX y Maven, diseñado para gestionar inventario, clientes, ventas y permisos en una armería.
+Este proyecto es un sistema de escritorio desarrollado y diseñado para gestionar inventario, clientes, ventas y permisos en una armería.
 
 ## 🚀 Características
 
@@ -13,13 +13,11 @@ Este proyecto es un sistema de escritorio desarrollado en Java con JavaFX y Mave
 ## 🧱 Tecnologías utilizadas
 
 - Java 22.0.2 (OpenJDK)
-- JavaFX
 - Maven
-- SQLite (como base de datos)
 - IntelliJ IDEA / Visual Studio Code
 
 ## 🛠️ Instalación y ejecución
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/Yordi1123/sistArmeria_remoto.git
+   git clone https://github.com/Yordi1123/Sistema_Armeria_Aguila.git
