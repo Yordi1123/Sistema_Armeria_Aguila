@@ -16,6 +16,11 @@ Este proyecto es un sistema de escritorio desarrollado y diseñado para gestiona
 - Maven
 - IntelliJ IDEA / Visual Studio Code
 
+## 🧩 Diagrama de Clases
+
+![Diagrama de clases](src/main/resources/image/SistemaArmeriaDef.svg)
+
+
 ## 🛠️ Instalación y ejecución
 
 1. Clonar el repositorio:
