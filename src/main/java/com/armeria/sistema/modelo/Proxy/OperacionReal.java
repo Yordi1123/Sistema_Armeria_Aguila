@@ -12,13 +12,13 @@ public class OperacionReal implements Operacion {
 
     @Override
     public void ejecutar() {
-        System.out.println("\n=============================================");
-        System.out.println("         Accediendo al sistema...          ");
-        System.out.println("=============================================");
-        System.out.println("    BIENVENIDO AL SISTEMA DE VENTAS DE     ");
-        System.out.println("               ARMERÍA                      ");
-        System.out.println("=============================================\n");
-
+System.out.println("\n=============================================");
+System.out.println("         Accediendo al sistema...          ");
+System.out.println("=============================================");
+System.out.println("    BIENVENIDO AL SISTEMA DE VENTAS DE     ");
+System.out.println("               ARMERÍA                      ");
+System.out.println("=============================================\n");
+        
         // Uso real de la fachada
         fachada.iniciarSistema();
         fachada.mostrarInventario();

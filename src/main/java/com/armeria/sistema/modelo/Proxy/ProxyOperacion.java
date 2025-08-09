@@ -6,6 +6,7 @@ import com.armeria.sistema.modelo.Fachada.Fachada;
 public class ProxyOperacion implements Operacion {
     private OperacionReal operacionReal;
     private boolean autenticado = false;
+
     private final String usuarioCorrecto = "admin";
     private final String passwordCorrecto = "1234";
 
@@ -25,17 +26,17 @@ public class ProxyOperacion implements Operacion {
     }
 
     private boolean autenticar() {
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.print("Ingrese usuario: ");
-            String usuario = sc.nextLine();
-            System.out.print("Ingrese contraseña: ");
-            String password = sc.nextLine();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese usuario: ");
+        String usuario = sc.nextLine();
 
-            if (usuario.equals(usuarioCorrecto) && password.equals(passwordCorrecto)) {
-                autenticado = true;
-                System.out.println("Autenticación exitosa...");
-                return true;
-            }
+        System.out.print("Ingrese contraseña: ");
+        String password = sc.nextLine();
+
+        if (usuario.equals(usuarioCorrecto) && password.equals(passwordCorrecto)) {
+            autenticado = true;
+            System.out.println("Autenticación exitosa...");
+            return true;
         }
         return false;
     }
