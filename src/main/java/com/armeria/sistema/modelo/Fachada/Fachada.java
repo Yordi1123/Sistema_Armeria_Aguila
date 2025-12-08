@@ -22,6 +22,8 @@ public class Fachada {
         mediador.agregarServicio(inventarioService);
     }
 
+    //Modificando mi proyecto en java
+
     public void iniciarSistema() {
         inventarioService.cargarInventario();
     }
